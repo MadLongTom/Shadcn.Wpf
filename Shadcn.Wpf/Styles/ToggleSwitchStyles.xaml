@@ -24,7 +24,7 @@
                             Height="24"
                             Background="{DynamicResource MutedBrush}"
                             BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="2"
+                            BorderThickness="1"
                             CornerRadius="12">
                         
                         <!-- State Text Container -->
@@ -91,7 +91,7 @@
                             CornerRadius="10"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Margin="2,0,0,0">
+                            Margin="1,0,0,0">
                         <Border.RenderTransform>
                             <TranslateTransform x:Name="ThumbTransform" X="0"/>
                         </Border.RenderTransform>
@@ -180,7 +180,7 @@
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="ThumbTransform"
                                            Storyboard.TargetProperty="X"
-                                           To="20"
+                                           To="21"
                                            Duration="0:0:0.2">
                                 <DoubleAnimation.EasingFunction>
                                     <CubicEase EasingMode="EaseOut"/>
@@ -216,7 +216,7 @@
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="ThumbTransform"
                                            Storyboard.TargetProperty="X"
-                                           To="14"
+                                           To="15"
                                            Duration="0:0:0.2">
                                 <DoubleAnimation.EasingFunction>
                                     <CubicEase EasingMode="EaseOut"/>
@@ -251,7 +251,7 @@
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="ThumbTransform"
                                            Storyboard.TargetProperty="X"
-                                           To="26"
+                                           To="27"
                                            Duration="0:0:0.2">
                                 <DoubleAnimation.EasingFunction>
                                     <CubicEase EasingMode="EaseOut"/>
