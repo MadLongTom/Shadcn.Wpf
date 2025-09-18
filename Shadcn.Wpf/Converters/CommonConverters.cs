@@ -300,6 +300,38 @@ public class ProgressWidthConverter : IMultiValueConverter
     }
 }
 
+public class ProgressScaleConverter : IMultiValueConverter
+{
+    public static readonly ProgressScaleConverter Instance = new();
+
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (values.Length >= 3 &&
+            values[0] is double value &&
+            values[1] is double minimum &&
+            values[2] is double maximum)
+        {
+            if (maximum == minimum) return 0.0;
+            
+            var percentage = (value - minimum) / (maximum - minimum);
+            percentage = Math.Max(0, Math.Min(1, percentage)); // Clamp between 0 and 1
+            
+            // Debug output
+            System.Diagnostics.Debug.WriteLine($"ProgressScaleConverter: Value={value}, Min={minimum}, Max={maximum}, Scale={percentage}");
+            
+            return percentage;
+        }
+        
+        System.Diagnostics.Debug.WriteLine($"ProgressScaleConverter: Invalid values - Length={values?.Length}");
+        return 0.0;
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
 public class StringToVisibilityConverter : IValueConverter
 {
     public static readonly StringToVisibilityConverter Instance = new();
@@ -335,4 +367,5 @@ public static class CommonConverters
     public static readonly IsNotNullConverter IsNotNullConverter = IsNotNullConverter.Instance;
     public static readonly IsNotNaNConverter IsNotNaNConverter = IsNotNaNConverter.Instance;
     public static readonly ProgressWidthConverter ProgressWidthConverter = ProgressWidthConverter.Instance;
+    public static readonly ProgressScaleConverter ProgressScaleConverter = ProgressScaleConverter.Instance;
 }

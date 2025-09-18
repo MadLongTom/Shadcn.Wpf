@@ -1,4 +1,4 @@
-<Page x:Class="Shadcn.Wpf.Presentation.Pages.ProgressPage"
+﻿<Page x:Class="Shadcn.Wpf.Presentation.Pages.ProgressPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="clr-namespace:Shadcn.Wpf.Controls;assembly=Shadcn.Wpf"
@@ -154,7 +154,7 @@
                                                       Value="{Binding DownloadProgressValue}" 
                                                       Label="Download.zip" 
                                                       ShowPercentage="True"
-                                                      Variant="Accent"/>
+                                                      Variant="Primary"/>
                         </StackPanel>
                         
                         <StackPanel Grid.Column="2" VerticalAlignment="Center">

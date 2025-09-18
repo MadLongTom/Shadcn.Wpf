@@ -1,7 +1,8 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace Shadcn.Wpf.Controls;
 
@@ -10,9 +11,6 @@ namespace Shadcn.Wpf.Controls;
 /// </summary>
 public class ShadcnProgressBar : ProgressBar
 {
-    private double _pendingTargetValue;
-    private bool _isAnimating;
-    private bool _hasPendingAnimation;
 
     static ShadcnProgressBar()
     {
@@ -191,79 +189,9 @@ public class ShadcnProgressBar : ProgressBar
     protected override void OnValueChanged(double oldValue, double newValue)
     {
         base.OnValueChanged(oldValue, newValue);
-        
-        // 如果不是通过动画设置的值，更新 _pendingTargetValue
-        if (!_isAnimating)
-        {
-            _pendingTargetValue = newValue;
-        }
-        
         UpdatePercentage();
     }
 
-    /// <summary>
-    /// 以动画方式设置进度条值
-    /// </summary>
-    public void AnimateToValue(double targetValue)
-    {
-        _pendingTargetValue = targetValue;
-
-        if (!IsAnimated || Math.Abs(Value - targetValue) < 0.01)
-        {
-            Value = targetValue;
-            return;
-        }
-
-        // 如果当前正在动画，标记有待处理的动画
-        if (_isAnimating)
-        {
-            _hasPendingAnimation = true;
-            return;
-        }
-
-        StartAnimation(targetValue);
-    }
-
-    private void StartAnimation(double targetValue)
-    {
-        var animation = new DoubleAnimation
-        {
-            From = Value,
-            To = targetValue,
-            Duration = new Duration(TimeSpan.FromMilliseconds(300)),
-            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-        };
-
-        animation.Completed += OnAnimationCompleted;
-
-        _isAnimating = true;
-        BeginAnimation(ValueProperty, animation);
-    }
-
-    private void OnAnimationCompleted(object? sender, EventArgs e)
-    {
-        _isAnimating = false;
-        
-        // 确保最终值是正确的
-        Value = _pendingTargetValue;
-
-        // 如果有待处理的动画，启动它
-        if (_hasPendingAnimation)
-        {
-            _hasPendingAnimation = false;
-            StartAnimation(_pendingTargetValue);
-        }
-    }
-
-    /// <summary>
-    /// 获取当前目标值（可能正在动画中）
-    /// </summary>
-    public double GetTargetValue()
-    {
-        // 如果正在动画或有待处理的动画，返回目标值
-        // 否则返回当前值
-        return (_isAnimating || _hasPendingAnimation) ? _pendingTargetValue : Value;
-    }
 
     protected override void OnMinimumChanged(double oldMinimum, double newMinimum)
     {

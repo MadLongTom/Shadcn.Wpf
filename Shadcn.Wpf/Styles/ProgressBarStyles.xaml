@@ -3,14 +3,13 @@
                     xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
                     xmlns:converters="clr-namespace:Shadcn.Wpf.Converters">
 
-    <!-- ShadcnProgressBar Default Style -->
+    <!-- ShadcnProgressBar Style -->
     <Style TargetType="{x:Type controls:ShadcnProgressBar}">
-        <Setter Property="Background" Value="{DynamicResource MutedBrush}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="CornerRadius" Value="4"/>
-        <Setter Property="Minimum" Value="0"/>
-        <Setter Property="Maximum" Value="100"/>
-        <Setter Property="Value" Value="0"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ShadcnProgressBar}">
@@ -18,56 +17,87 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        
-                        <!-- Label and Percentage -->
-                        <Grid Grid.Row="0" 
-                              Margin="0,0,0,4"
-                              Visibility="{Binding Label, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:CommonConverters.NullToVisibilityConverter}}">
+
+                        <!-- Header Row: Label and Percentage -->
+                        <Grid Grid.Row="0" Margin="0,0,0,8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             
-                            <controls:ShadcnTextBlock Grid.Column="0"
-                                                    Text="{TemplateBinding Label}"
-                                                    TextSize="Small"
-                                                    IsEmphasized="True"/>
-                            
-                            <controls:ShadcnTextBlock Grid.Column="1"
-                                                    Text="{Binding Percentage, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:F0}%}"
-                                                    TextSize="Small"
-                                                    Variant="Secondary"
-                                                    Visibility="{Binding ShowPercentage, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:CommonConverters.BooleanToVisibilityConverter}}"/>
+                            <!-- Label -->
+                            <TextBlock Grid.Column="0"
+                                       Text="{TemplateBinding Label}"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource ForegroundBrush}"
+                                       VerticalAlignment="Center">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <!-- Percentage Text -->
+                            <TextBlock Grid.Column="1"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource MutedForegroundBrush}"
+                                       VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0:F0}%">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Percentage"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowPercentage}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </Grid>
-                        
-                        <!-- Progress Track -->
-                        <Border Grid.Row="1"
-                                x:Name="PART_Track"
+
+                        <!-- Progress Bar Container -->
+                        <Border Grid.Row="1" Name="PART_Track"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
-                                Height="8">
+                                Height="8"
+                                ClipToBounds="True">
                             
                             <!-- Progress Indicator -->
-                            <Border x:Name="PART_Indicator"
-                                    HorizontalAlignment="Left"
+                            <Border Name="PART_Indicator"
+                                    Background="{TemplateBinding Foreground}"
                                     CornerRadius="{TemplateBinding CornerRadius}"
-                                    Background="{DynamicResource PrimaryBrush}">
+                                    HorizontalAlignment="Left">
                                 <Border.Width>
-                                    <MultiBinding Converter="{x:Static converters:CommonConverters.ProgressWidthConverter}">
-                                        <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                        <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                        <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                        <Binding Path="ActualWidth" ElementName="PART_Track"/>
+                                    <MultiBinding>
+                                        <MultiBinding.Converter>
+                                            <converters:ProgressWidthConverter/>
+                                        </MultiBinding.Converter>
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value"/>
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum"/>
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum"/>
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth"/>
                                     </MultiBinding>
                                 </Border.Width>
                             </Border>
                         </Border>
                     </Grid>
-                    
+
                     <ControlTemplate.Triggers>
-                        <!-- Size Triggers -->
+                        <!-- Size triggers -->
                         <Trigger Property="Size" Value="Small">
                             <Setter TargetName="PART_Track" Property="Height" Value="4"/>
                             <Setter Property="CornerRadius" Value="2"/>
@@ -76,139 +106,58 @@
                             <Setter TargetName="PART_Track" Property="Height" Value="12"/>
                             <Setter Property="CornerRadius" Value="6"/>
                         </Trigger>
-                        
-                        <!-- Variant Triggers -->
-                        <Trigger Property="Variant" Value="Default">
-                            <Setter TargetName="PART_Indicator" Property="Background" Value="{DynamicResource ForegroundBrush}"/>
-                        </Trigger>
+
+                        <!-- Variant triggers -->
                         <Trigger Property="Variant" Value="Primary">
-                            <Setter TargetName="PART_Indicator" Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
                         </Trigger>
                         <Trigger Property="Variant" Value="Secondary">
-                            <Setter TargetName="PART_Indicator" Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource SecondaryBrush}"/>
                         </Trigger>
                         <Trigger Property="Variant" Value="Success">
-                            <Setter TargetName="PART_Indicator" Property="Background" Value="{DynamicResource SuccessBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}"/>
                         </Trigger>
                         <Trigger Property="Variant" Value="Warning">
-                            <Setter TargetName="PART_Indicator" Property="Background" Value="{DynamicResource WarningBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource WarningBrush}"/>
                         </Trigger>
                         <Trigger Property="Variant" Value="Destructive">
-                            <Setter TargetName="PART_Indicator" Property="Background" Value="{DynamicResource DestructiveBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource DestructiveBrush}"/>
                         </Trigger>
                         <Trigger Property="Variant" Value="Accent">
-                            <Setter TargetName="PART_Indicator" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
                         </Trigger>
-                        
-                        <!-- Indeterminate State -->
+
+                        <!-- Indeterminate state -->
                         <Trigger Property="IsIndeterminate" Value="True">
                             <Setter TargetName="PART_Indicator" Property="Width" Value="30"/>
+                            <Setter TargetName="PART_Indicator" Property="HorizontalAlignment" Value="Left"/>
+                            <Setter TargetName="PART_Indicator" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="-30"/>
+                                </Setter.Value>
+                            </Setter>
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard RepeatBehavior="Forever">
                                         <DoubleAnimation Storyboard.TargetName="PART_Indicator"
-                                                       Storyboard.TargetProperty="(Canvas.Left)"
-                                                       From="-30"
-                                                       To="100"
-                                                       Duration="0:0:1.5">
-                                            <DoubleAnimation.EasingFunction>
-                                                <CubicEase EasingMode="EaseInOut"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                         From="-30" 
+                                                         To="100"
+                                                         Duration="0:0:1.5"
+                                                         AutoReverse="False"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
-                        </Trigger>
-                        
-                        <!-- IsEnabled -->
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.5"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- Circular Progress Bar Style -->
-    <Style x:Key="ShadcnCircularProgressBar" TargetType="{x:Type controls:ShadcnProgressBar}">
-        <Setter Property="Width" Value="64"/>
-        <Setter Property="Height" Value="64"/>
-        <Setter Property="Background" Value="{DynamicResource MutedBrush}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:ShadcnProgressBar}">
-                    <Grid>
-                        <Ellipse x:Name="PART_Track"
-                                Stroke="{TemplateBinding Background}"
-                                StrokeThickness="4"
-                                Fill="Transparent"/>
-                        
-                        <Path x:Name="PART_Indicator"
-                              Stroke="{DynamicResource PrimaryBrush}"
-                              StrokeThickness="4"
-                              Fill="Transparent">
-                            <Path.Data>
-                                <PathGeometry>
-                                    <PathFigure x:Name="PART_Arc" StartPoint="32,4">
-                                        <ArcSegment x:Name="PART_ArcSegment"
-                                                  Size="28,28"
-                                                  SweepDirection="Clockwise"
-                                                  IsLargeArc="False"
-                                                  Point="32,4"/>
-                                    </PathFigure>
-                                </PathGeometry>
-                            </Path.Data>
-                        </Path>
-                        
-                        <!-- Center content -->
-                        <Grid>
-                            <controls:ShadcnTextBlock x:Name="PART_PercentageText"
-                                                    Text="{Binding Percentage, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:F0}%}"
-                                                    TextSize="Small"
-                                                    IsEmphasized="True"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Visibility="{Binding ShowPercentage, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:CommonConverters.BooleanToVisibilityConverter}}"/>
-                        </Grid>
-                    </Grid>
-                    
-                    <ControlTemplate.Triggers>
-                        <!-- Size Triggers for Circular -->
-                        <Trigger Property="Size" Value="Small">
-                            <Setter Property="Width" Value="48"/>
-                            <Setter Property="Height" Value="48"/>
-                            <Setter TargetName="PART_Track" Property="StrokeThickness" Value="3"/>
-                            <Setter TargetName="PART_Indicator" Property="StrokeThickness" Value="3"/>
-                        </Trigger>
-                        <Trigger Property="Size" Value="Large">
-                            <Setter Property="Width" Value="96"/>
-                            <Setter Property="Height" Value="96"/>
-                            <Setter TargetName="PART_Track" Property="StrokeThickness" Value="6"/>
-                            <Setter TargetName="PART_Indicator" Property="StrokeThickness" Value="6"/>
-                        </Trigger>
-                        
-                        <!-- Variant Triggers for Circular -->
-                        <Trigger Property="Variant" Value="Default">
-                            <Setter TargetName="PART_Indicator" Property="Stroke" Value="{DynamicResource ForegroundBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Variant" Value="Primary">
-                            <Setter TargetName="PART_Indicator" Property="Stroke" Value="{DynamicResource PrimaryBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Variant" Value="Secondary">
-                            <Setter TargetName="PART_Indicator" Property="Stroke" Value="{DynamicResource SecondaryBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Variant" Value="Success">
-                            <Setter TargetName="PART_Indicator" Property="Stroke" Value="{DynamicResource SuccessBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Variant" Value="Warning">
-                            <Setter TargetName="PART_Indicator" Property="Stroke" Value="{DynamicResource WarningBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Variant" Value="Destructive">
-                            <Setter TargetName="PART_Indicator" Property="Stroke" Value="{DynamicResource DestructiveBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Variant" Value="Accent">
-                            <Setter TargetName="PART_Indicator" Property="Stroke" Value="{DynamicResource AccentBrush}"/>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_Indicator"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                         To="0"
+                                                         Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

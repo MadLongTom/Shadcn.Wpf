@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Shadcn.Wpf.Services;
+using System.Windows;
 
 namespace Shadcn.Wpf.Presentation.ViewModels;
 
@@ -110,11 +111,18 @@ public partial class ProgressPageViewModel : BasePageViewModel
 
         try
         {
-            for (int i = 0; i <= 100; i += 2)
+            await Task.Run(async () =>
             {
-                DownloadProgressValue = i;
-                await Task.Delay(50); // Faster simulation
-            }
+                for (int i = 0; i <= 100; i += 2)
+                {
+                    // 使用Dispatcher.Invoke确保UI更新在UI线程上执行
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        DownloadProgressValue = i;
+                    });
+                    await Task.Delay(50); // Faster simulation
+                }
+            });
 
             _messageService.ShowInformation("Download completed!", "Success");
         }
