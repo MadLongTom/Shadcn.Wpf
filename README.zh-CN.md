@@ -1,12 +1,15 @@
 # Shadcn.Wpf
 
-<div align="right">
-  <a href="README.md">English</a> | <strong>简体中文</strong>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <span>
+    <a href="https://dotnet.microsoft.com/"><img src="https://img.shields.io/badge/.NET-9.0-512BD4?style=flat-square" alt=".NET Version"/></a>
+    <a href="https://docs.microsoft.com/en-us/dotnet/desktop/wpf/"><img src="https://img.shields.io/badge/WPF-Windows%20Presentation%20Foundation-0078D4?style=flat-square" alt="WPF"/></a>
+    <a href="LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"/></a>
+  </span>
+  <span>
+    <a href="README.md">English</a> | <strong>简体中文</strong>
+  </span>
 </div>
-
-[![.NET Version](https://img.shields.io/badge/.NET-9.0-512BD4?style=flat-square)](https://dotnet.microsoft.com/)
-[![WPF](https://img.shields.io/badge/WPF-Windows%20Presentation%20Foundation-0078D4?style=flat-square)](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/)
-[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE.txt)
 
 一个基于 [shadcn/ui](https://ui.shadcn.com/) 设计理念的现代化 WPF 组件库，为 .NET 9 WPF 应用程序提供美观、一致且易用的 UI 组件集合。
 

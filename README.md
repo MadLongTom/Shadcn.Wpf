@@ -1,12 +1,15 @@
 # Shadcn.Wpf
 
-<div align="right">
-  <strong>English</strong> | <a href="README.zh-CN.md">简体中文</a>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <span>
+    <a href="https://dotnet.microsoft.com/"><img src="https://img.shields.io/badge/.NET-9.0-512BD4?style=flat-square" alt=".NET Version"/></a>
+    <a href="https://docs.microsoft.com/en-us/dotnet/desktop/wpf/"><img src="https://img.shields.io/badge/WPF-Windows%20Presentation%20Foundation-0078D4?style=flat-square" alt="WPF"/></a>
+    <a href="LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"/></a>
+  </span>
+  <span>
+    <strong>English</strong> | <a href="README.zh-CN.md">简体中文</a>
+  </span>
 </div>
-
-[![.NET Version](https://img.shields.io/badge/.NET-9.0-512BD4?style=flat-square)](https://dotnet.microsoft.com/)
-[![WPF](https://img.shields.io/badge/WPF-Windows%20Presentation%20Foundation-0078D4?style=flat-square)](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/)
-[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE.txt)
 
 A modern WPF component library inspired by [shadcn/ui](https://ui.shadcn.com/) design principles, providing beautiful, consistent, and easy-to-use UI components for .NET 9 WPF applications.
 
