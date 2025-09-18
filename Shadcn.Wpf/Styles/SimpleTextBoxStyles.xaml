@@ -8,14 +8,14 @@
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="6"
+                CornerRadius="{DynamicResource RadiusMd}"
                 Padding="{TemplateBinding Padding}">
             
             <Grid>
                 <!-- Placeholder Text -->
                 <TextBlock x:Name="PART_Placeholder"
                           Text="{TemplateBinding Placeholder}"
-                          Foreground="#64748B"
+                          Foreground="{DynamicResource MutedForegroundBrush}"
                           VerticalAlignment="Center"
                           IsHitTestVisible="False"
                           Visibility="Collapsed"/>
@@ -40,8 +40,8 @@
             
             <!-- Focus state -->
             <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter TargetName="PART_Border" Property="BorderBrush" Value="#3B82F6"/>
-                <Setter TargetName="PART_Border" Property="BorderThickness" Value="2"/>
+                <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource RingBrush}"/>
+                <Setter TargetName="PART_Border" Property="BorderThickness" Value="{DynamicResource BorderMedium}"/>
             </Trigger>
             
             <!-- Disabled state -->
@@ -54,14 +54,14 @@
     <!-- Simple TextBox Style -->
     <Style TargetType="{x:Type controls:ShadcnTextBox}">
         <Setter Property="Template" Value="{StaticResource SimpleTextBoxTemplate}"/>
-        <Setter Property="Background" Value="#FFFFFF"/>
-        <Setter Property="Foreground" Value="#020817"/>
-        <Setter Property="BorderBrush" Value="#E2E8F0"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource BorderThin}"/>
+        <Setter Property="Padding" Value="{DynamicResource PaddingMd}"/>
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="MinHeight" Value="36"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeSm}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource ControlHeightMd}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 

@@ -1,4 +1,4 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
                     xmlns:converters="clr-namespace:Shadcn.Wpf.Converters">
@@ -14,44 +14,44 @@
         <Style.Triggers>
             <!-- Size Triggers -->
             <Trigger Property="TextSize" Value="ExtraSmall">
-                <Setter Property="FontSize" Value="10"/>
-                <Setter Property="LineHeight" Value="14"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSizeXs}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeightXs}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="Small">
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="LineHeight" Value="16"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSizeSm}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeightSm}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="Default">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="LineHeight" Value="20"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSizeBase}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeightBase}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="Large">
-                <Setter Property="FontSize" Value="16"/>
-                <Setter Property="LineHeight" Value="24"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSizeLg}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeightLg}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="ExtraLarge">
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="LineHeight" Value="28"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSizeXl}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeightXl}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="Heading1">
-                <Setter Property="FontSize" Value="36"/>
-                <Setter Property="LineHeight" Value="40"/>
-                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize4Xl}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeight4Xl}"/>
+                <Setter Property="FontWeight" Value="{DynamicResource FontWeightBold}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="Heading2">
-                <Setter Property="FontSize" Value="30"/>
-                <Setter Property="LineHeight" Value="36"/>
-                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize3Xl}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeight3Xl}"/>
+                <Setter Property="FontWeight" Value="{DynamicResource FontWeightBold}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="Heading3">
-                <Setter Property="FontSize" Value="24"/>
-                <Setter Property="LineHeight" Value="32"/>
-                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize2Xl}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeight2Xl}"/>
+                <Setter Property="FontWeight" Value="{DynamicResource FontWeightSemibold}"/>
             </Trigger>
             <Trigger Property="TextSize" Value="Heading4">
-                <Setter Property="FontSize" Value="20"/>
-                <Setter Property="LineHeight" Value="28"/>
-                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSizeXl}"/>
+                <Setter Property="LineHeight" Value="{DynamicResource LineHeightXl}"/>
+                <Setter Property="FontWeight" Value="{DynamicResource FontWeightSemibold}"/>
             </Trigger>
 
             <!-- Variant Triggers -->
@@ -79,7 +79,7 @@
 
             <!-- Text Formatting Triggers -->
             <Trigger Property="IsEmphasized" Value="True">
-                <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontWeight" Value="{DynamicResource FontWeightBold}"/>
             </Trigger>
             <Trigger Property="IsItalic" Value="True">
                 <Setter Property="FontStyle" Value="Italic"/>
@@ -140,7 +140,7 @@
     <!-- Title Text -->
     <Style x:Key="ShadcnTitleText" TargetType="{x:Type controls:ShadcnTextBlock}" BasedOn="{StaticResource {x:Type controls:ShadcnTextBlock}}">
         <Setter Property="TextSize" Value="Heading2"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontWeight" Value="{DynamicResource FontWeightSemibold}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
 
@@ -154,7 +154,7 @@
     <Style x:Key="ShadcnBodyText" TargetType="{x:Type controls:ShadcnTextBlock}" BasedOn="{StaticResource {x:Type controls:ShadcnTextBlock}}">
         <Setter Property="TextSize" Value="Default"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="LineHeight" Value="24"/>
+        <Setter Property="LineHeight" Value="{DynamicResource LineHeightLg}"/>
     </Style>
 
     <!-- Caption Text -->
@@ -168,7 +168,7 @@
     <Style x:Key="ShadcnCodeText" TargetType="{x:Type controls:ShadcnTextBlock}" BasedOn="{StaticResource {x:Type controls:ShadcnTextBlock}}">
         <Setter Property="FontFamily" Value="Consolas, 'Courier New', monospace"/>
         <Setter Property="Background" Value="{DynamicResource MutedBrush}"/>
-        <Setter Property="Padding" Value="4,2"/>
+        <Setter Property="Padding" Value="{DynamicResource ComponentPaddingXs}"/>
         <Setter Property="TextSize" Value="Small"/>
     </Style>
 

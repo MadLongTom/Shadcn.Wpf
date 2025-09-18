@@ -19,7 +19,22 @@
     <sys:Double x:Key="Space24" xmlns:sys="clr-namespace:System;assembly=mscorlib">96</sys:Double>
     <sys:Double x:Key="Space32" xmlns:sys="clr-namespace:System;assembly=mscorlib">128</sys:Double>
     
-    <!-- Size Values for Common UI Elements -->
+    <!-- Icon Sizes -->
+    <sys:Double x:Key="IconSizeXs" xmlns:sys="clr-namespace:System;assembly=mscorlib">12</sys:Double>
+    <sys:Double x:Key="IconSizeSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">16</sys:Double>
+    <sys:Double x:Key="IconSizeMd" xmlns:sys="clr-namespace:System;assembly=mscorlib">20</sys:Double>
+    <sys:Double x:Key="IconSizeLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">24</sys:Double>
+    <sys:Double x:Key="IconSizeXl" xmlns:sys="clr-namespace:System;assembly=mscorlib">32</sys:Double>
+    
+    <!-- Control Heights -->
+    <sys:Double x:Key="ControlHeightSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">32</sys:Double>
+    <sys:Double x:Key="ControlHeightMd" xmlns:sys="clr-namespace:System;assembly=mscorlib">36</sys:Double>
+    <sys:Double x:Key="ControlHeightLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">44</sys:Double>
+    <sys:Double x:Key="ControlHeightXl" xmlns:sys="clr-namespace:System;assembly=mscorlib">48</sys:Double>
+    
+    <!-- Common Sizes -->
+    <sys:Double x:Key="Size20" xmlns:sys="clr-namespace:System;assembly=mscorlib">20</sys:Double>
+    <sys:Double x:Key="Size24" xmlns:sys="clr-namespace:System;assembly=mscorlib">24</sys:Double>
     <sys:Double x:Key="Size28" xmlns:sys="clr-namespace:System;assembly=mscorlib">28</sys:Double>
     <sys:Double x:Key="Size32" xmlns:sys="clr-namespace:System;assembly=mscorlib">32</sys:Double>
     <sys:Double x:Key="Size36" xmlns:sys="clr-namespace:System;assembly=mscorlib">36</sys:Double>
@@ -43,6 +58,72 @@
     <Thickness x:Key="Spacing24">96</Thickness>
     <Thickness x:Key="Spacing32">128</Thickness>
     
+    <!-- Directional Spacing -->
+    <!-- Top Spacing -->
+    <Thickness x:Key="SpacingTopXs">0,4,0,0</Thickness>
+    <Thickness x:Key="SpacingTopSm">0,8,0,0</Thickness>
+    <Thickness x:Key="SpacingTopMd">0,12,0,0</Thickness>
+    <Thickness x:Key="SpacingTopLg">0,16,0,0</Thickness>
+    <Thickness x:Key="SpacingTopXl">0,24,0,0</Thickness>
+    
+    <!-- Bottom Spacing -->
+    <Thickness x:Key="SpacingBottomXs">0,0,0,4</Thickness>
+    <Thickness x:Key="SpacingBottomSm">0,0,0,8</Thickness>
+    <Thickness x:Key="SpacingBottomMd">0,0,0,12</Thickness>
+    <Thickness x:Key="SpacingBottomLg">0,0,0,16</Thickness>
+    <Thickness x:Key="SpacingBottomXl">0,0,0,24</Thickness>
+    
+    <!-- Left Spacing -->
+    <Thickness x:Key="SpacingLeftXs">4,0,0,0</Thickness>
+    <Thickness x:Key="SpacingLeftSm">8,0,0,0</Thickness>
+    <Thickness x:Key="SpacingLeftMd">12,0,0,0</Thickness>
+    <Thickness x:Key="SpacingLeftLg">16,0,0,0</Thickness>
+    <Thickness x:Key="SpacingLeftXl">24,0,0,0</Thickness>
+    
+    <!-- Right Spacing -->
+    <Thickness x:Key="SpacingRightXs">0,0,4,0</Thickness>
+    <Thickness x:Key="SpacingRightSm">0,0,8,0</Thickness>
+    <Thickness x:Key="SpacingRightMd">0,0,12,0</Thickness>
+    <Thickness x:Key="SpacingRightLg">0,0,16,0</Thickness>
+    <Thickness x:Key="SpacingRightXl">0,0,24,0</Thickness>
+    
+    <!-- Horizontal/Vertical Spacing -->
+    <Thickness x:Key="SpacingHorizontalXs">4,0</Thickness>
+    <Thickness x:Key="SpacingHorizontalSm">8,0</Thickness>
+    <Thickness x:Key="SpacingHorizontalMd">12,0</Thickness>
+    <Thickness x:Key="SpacingHorizontalLg">16,0</Thickness>
+    <Thickness x:Key="SpacingHorizontalXl">24,0</Thickness>
+    
+    <Thickness x:Key="SpacingVerticalXs">0,4</Thickness>
+    <Thickness x:Key="SpacingVerticalSm">0,8</Thickness>
+    <Thickness x:Key="SpacingVerticalMd">0,12</Thickness>
+    <Thickness x:Key="SpacingVerticalLg">0,16</Thickness>
+    <Thickness x:Key="SpacingVerticalXl">0,24</Thickness>
+    
+    <!-- Component Padding (Inset) -->
+    <Thickness x:Key="ComponentPaddingXs">6,4</Thickness>
+    <Thickness x:Key="ComponentPaddingSm">8,6</Thickness>
+    <Thickness x:Key="ComponentPaddingMd">12,8</Thickness>
+    <Thickness x:Key="ComponentPaddingLg">16,12</Thickness>
+    <Thickness x:Key="ComponentPaddingXl">24,16</Thickness>
+    
+    <!-- Component Margins -->
+    <Thickness x:Key="ComponentMarginXs">0,0,0,4</Thickness>
+    <Thickness x:Key="ComponentMarginSm">0,0,0,8</Thickness>
+    <Thickness x:Key="ComponentMarginMd">0,0,0,12</Thickness>
+    <Thickness x:Key="ComponentMarginLg">0,0,0,16</Thickness>
+    <Thickness x:Key="ComponentMarginXl">0,0,0,24</Thickness>
+    
+    <!-- Icon Margins -->
+    <Thickness x:Key="IconMarginXs">0,0,4,0</Thickness>
+    <Thickness x:Key="IconMarginSm">0,0,8,0</Thickness>
+    <Thickness x:Key="IconMarginMd">0,0,12,0</Thickness>
+    
+    <!-- Content Margins -->
+    <Thickness x:Key="ContentMarginSm">12,0,0,0</Thickness>
+    <Thickness x:Key="ContentMarginMd">16,0,0,0</Thickness>
+    <Thickness x:Key="ContentMarginLg">24,0,0,0</Thickness>
+    
     <!-- Border Radii -->
     <CornerRadius x:Key="RadiusNone">0</CornerRadius>
     <CornerRadius x:Key="RadiusSm">2</CornerRadius>
@@ -53,6 +134,19 @@
     <CornerRadius x:Key="Radius2Xl">16</CornerRadius>
     <CornerRadius x:Key="Radius3Xl">24</CornerRadius>
     <CornerRadius x:Key="RadiusFull">9999</CornerRadius>
+    
+    <!-- Border Thickness -->
+    <Thickness x:Key="BorderNone">0</Thickness>
+    <Thickness x:Key="BorderThin">1</Thickness>
+    <Thickness x:Key="BorderMedium">2</Thickness>
+    <Thickness x:Key="BorderThick">3</Thickness>
+    
+    <!-- Specific Border Combinations -->
+    <Thickness x:Key="BorderBottom">0,0,0,1</Thickness>
+    <Thickness x:Key="BorderBottomMedium">0,0,0,2</Thickness>
+    <Thickness x:Key="BorderTop">0,1,0,0</Thickness>
+    <Thickness x:Key="BorderLeft">1,0,0,0</Thickness>
+    <Thickness x:Key="BorderRight">0,0,1,0</Thickness>
     
     <!-- Shadow Definitions -->
     <DropShadowEffect x:Key="ShadowSm" 
@@ -112,5 +206,48 @@
                       ShadowDepth="2" 
                       Direction="270" 
                       Opacity="0.25"/>
+    
+    <!-- ToggleSwitch Specific Tokens -->
+    <!-- Track Sizes -->
+    <sys:Double x:Key="ToggleTrackWidthSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">32</sys:Double>
+    <sys:Double x:Key="ToggleTrackWidthMd" xmlns:sys="clr-namespace:System;assembly=mscorlib">44</sys:Double>
+    <sys:Double x:Key="ToggleTrackWidthLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">56</sys:Double>
+    
+    <sys:Double x:Key="ToggleTrackHeightSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">18</sys:Double>
+    <sys:Double x:Key="ToggleTrackHeightMd" xmlns:sys="clr-namespace:System;assembly=mscorlib">24</sys:Double>
+    <sys:Double x:Key="ToggleTrackHeightLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">30</sys:Double>
+    
+    <!-- Thumb Sizes -->
+    <sys:Double x:Key="ToggleThumbSizeSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">14</sys:Double>
+    <sys:Double x:Key="ToggleThumbSizeMd" xmlns:sys="clr-namespace:System;assembly=mscorlib">20</sys:Double>
+    <sys:Double x:Key="ToggleThumbSizeLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">26</sys:Double>
+    
+    <!-- Track Corner Radius -->
+    <CornerRadius x:Key="ToggleTrackRadiusSm">9</CornerRadius>
+    <CornerRadius x:Key="ToggleTrackRadiusMd">12</CornerRadius>
+    <CornerRadius x:Key="ToggleTrackRadiusLg">15</CornerRadius>
+    
+    <!-- Thumb Corner Radius -->
+    <CornerRadius x:Key="ToggleThumbRadiusSm">7</CornerRadius>
+    <CornerRadius x:Key="ToggleThumbRadiusMd">10</CornerRadius>
+    <CornerRadius x:Key="ToggleThumbRadiusLg">13</CornerRadius>
+    
+    <!-- Toggle Animation Distances -->
+    <sys:Double x:Key="ToggleDistanceSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">15</sys:Double>
+    <sys:Double x:Key="ToggleDistanceMd" xmlns:sys="clr-namespace:System;assembly=mscorlib">21</sys:Double>
+    <sys:Double x:Key="ToggleDistanceLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">27</sys:Double>
+    
+    <!-- Toggle Text Margins -->
+    <Thickness x:Key="ToggleTextMarginSmOff">0,0,4,0</Thickness>
+    <Thickness x:Key="ToggleTextMarginSmOn">4,0,0,0</Thickness>
+    <Thickness x:Key="ToggleTextMarginMdOff">0,0,6,0</Thickness>
+    <Thickness x:Key="ToggleTextMarginMdOn">6,0,0,0</Thickness>
+    <Thickness x:Key="ToggleTextMarginLgOff">0,0,8,0</Thickness>
+    <Thickness x:Key="ToggleTextMarginLgOn">8,0,0,0</Thickness>
+    
+    <!-- Toggle Text Font Sizes -->
+    <sys:Double x:Key="ToggleTextSizeSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">8</sys:Double>
+    <sys:Double x:Key="ToggleTextSizeMd" xmlns:sys="clr-namespace:System;assembly=mscorlib">10</sys:Double>
+    <sys:Double x:Key="ToggleTextSizeLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">12</sys:Double>
     
 </ResourceDictionary>

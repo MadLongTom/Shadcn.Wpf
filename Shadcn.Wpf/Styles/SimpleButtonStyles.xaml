@@ -8,7 +8,7 @@
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="6"
+                CornerRadius="{DynamicResource RadiusMd}"
                 Padding="{TemplateBinding Padding}">
             <ContentPresenter Content="{TemplateBinding Content}"
                             VerticalAlignment="Center"
@@ -30,15 +30,15 @@
     <!-- Simple Button Style -->
     <Style TargetType="{x:Type controls:ShadcnButton}">
         <Setter Property="Template" Value="{StaticResource SimpleButtonTemplate}"/>
-        <Setter Property="Background" Value="#0F172A"/>
-        <Setter Property="Foreground" Value="#F8FAFC"/>
+        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="16,8"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource BorderThin}"/>
+        <Setter Property="Padding" Value="{DynamicResource PaddingMd}"/>
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeSm}"/>
         <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="MinHeight" Value="36"/>
+        <Setter Property="MinHeight" Value="{DynamicResource ControlHeightMd}"/>
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
 

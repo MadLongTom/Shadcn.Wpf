@@ -1,4 +1,4 @@
-<Page x:Class="Shadcn.Wpf.Presentation.Pages.TypographyPage"
+﻿<Page x:Class="Shadcn.Wpf.Presentation.Pages.TypographyPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="clr-namespace:Shadcn.Wpf.Controls;assembly=Shadcn.Wpf"

@@ -15,12 +15,12 @@
                 <!-- CheckBox Visual -->
                 <Border x:Name="CheckBoxBorder"
                         Grid.Column="0"
-                        Width="16"
-                        Height="16"
+                        Width="{DynamicResource IconSizeSm}"
+                        Height="{DynamicResource IconSizeSm}"
                         Background="{DynamicResource BackgroundBrush}"
                         BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="2"
-                        CornerRadius="3"
+                        BorderThickness="{DynamicResource BorderMedium}"
+                        CornerRadius="{DynamicResource RadiusSm}"
                         VerticalAlignment="Top"
                         Margin="0,2,0,0">
                     
@@ -29,7 +29,7 @@
                         <TextBlock x:Name="CheckMark"
                                    Text="✓"
                                    FontFamily="{DynamicResource DefaultFontFamily}"
-                                   FontSize="10"
+                                   FontSize="{DynamicResource FontSizeXs}"
                                    Foreground="{DynamicResource PrimaryForegroundBrush}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
@@ -47,22 +47,22 @@
                 </Border>
                 
                 <!-- Content -->
-                <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                <StackPanel Grid.Column="1" Margin="{DynamicResource ContentMarginSm}">
                     <ContentPresenter x:Name="ContentPresenter"
                                     Content="{TemplateBinding Content}"
                                     ContentTemplate="{TemplateBinding ContentTemplate}"
                                     TextElement.Foreground="{DynamicResource ForegroundBrush}"
                                     TextElement.FontFamily="{DynamicResource DefaultFontFamily}"
-                                    TextElement.FontSize="14"
+                                    TextElement.FontSize="{DynamicResource FontSizeSm}"
                                     VerticalAlignment="Center"/>
                     
                     <!-- Description -->
                     <TextBlock x:Name="DescriptionText"
                                Text="{TemplateBinding Description}"
                                FontFamily="{DynamicResource DefaultFontFamily}"
-                               FontSize="12"
+                               FontSize="{DynamicResource FontSizeXs}"
                                Foreground="{DynamicResource MutedForegroundBrush}"
-                               Margin="0,4,0,0"
+                               Margin="{DynamicResource SpacingTopXs}"
                                TextWrapping="Wrap">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
@@ -85,16 +85,16 @@
         <ControlTemplate.Triggers>
             <!-- Size Triggers -->
             <Trigger Property="Size" Value="Small">
-                <Setter TargetName="CheckBoxBorder" Property="Width" Value="14"/>
-                <Setter TargetName="CheckBoxBorder" Property="Height" Value="14"/>
+                <Setter TargetName="CheckBoxBorder" Property="Width" Value="{DynamicResource IconSizeXs}"/>
+                <Setter TargetName="CheckBoxBorder" Property="Height" Value="{DynamicResource IconSizeXs}"/>
                 <Setter TargetName="CheckMark" Property="FontSize" Value="8"/>
-                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="12"/>
+                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="{DynamicResource FontSizeXs}"/>
             </Trigger>
             <Trigger Property="Size" Value="Large">
-                <Setter TargetName="CheckBoxBorder" Property="Width" Value="20"/>
-                <Setter TargetName="CheckBoxBorder" Property="Height" Value="20"/>
-                <Setter TargetName="CheckMark" Property="FontSize" Value="12"/>
-                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="16"/>
+                <Setter TargetName="CheckBoxBorder" Property="Width" Value="{DynamicResource IconSizeLg}"/>
+                <Setter TargetName="CheckBoxBorder" Property="Height" Value="{DynamicResource IconSizeLg}"/>
+                <Setter TargetName="CheckMark" Property="FontSize" Value="{DynamicResource FontSizeXs}"/>
+                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="{DynamicResource FontSizeMd}"/>
             </Trigger>
             
             <!-- State Triggers -->
@@ -136,7 +136,7 @@
         <Setter Property="Template" Value="{StaticResource ShadcnCheckBoxTemplate}"/>
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="Margin" Value="{DynamicResource ComponentMarginXs}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>

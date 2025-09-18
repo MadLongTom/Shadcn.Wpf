@@ -9,12 +9,12 @@
 
     <!-- Default Style for ShadcnTabControl -->
     <Style TargetType="{x:Type controls:ShadcnTabControl}">
-        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Padding" Value="{DynamicResource SpacingLeftXs}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource BorderNone}"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
@@ -55,8 +55,8 @@
         <Setter Property="Foreground" Value="{DynamicResource MutedForegroundBrush}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Margin" Value="{DynamicResource Spacing0}"/>
+        <Setter Property="Padding" Value="{DynamicResource ComponentPaddingMd}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
@@ -66,7 +66,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ShadcnTabItem}">
                     <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
-                        <Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,2" Background="{TemplateBinding Background}" Margin="0">
+        <Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{DynamicResource BorderBottomMedium}" Background="{TemplateBinding Background}" Margin="{DynamicResource Spacing0}">
                             <ContentPresenter x:Name="contentPresenter" 
                                             ContentSource="Header" 
                                             Focusable="False" 
@@ -109,11 +109,11 @@
         </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Size, RelativeSource={RelativeSource AncestorType=controls:ShadcnTabControl}}" Value="Small">
-                <Setter Property="Padding" Value="8,6"/>
+                <Setter Property="Padding" Value="{DynamicResource ComponentPaddingSm}"/>
                 <Setter Property="FontSize" Value="{StaticResource FontSizeXs}"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding Size, RelativeSource={RelativeSource AncestorType=controls:ShadcnTabControl}}" Value="Large">
-                <Setter Property="Padding" Value="16,12"/>
+                <Setter Property="Padding" Value="{DynamicResource ComponentPaddingLg}"/>
                 <Setter Property="FontSize" Value="{StaticResource FontSizeBase}"/>
             </DataTrigger>
         </Style.Triggers>

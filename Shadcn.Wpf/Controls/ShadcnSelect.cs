@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Shadcn.Wpf.Controls;
 
@@ -176,8 +177,45 @@ public class ShadcnSelect : ItemsControl
             _popup.Closed += OnPopupClosed;
         }
 
+        // Initialize visual states
+        UpdateVisualStates(false);
+
         // Delay UpdateContentPresenter to ensure ToggleButton template is fully loaded
         Dispatcher.BeginInvoke(new Action(UpdateContentPresenter), System.Windows.Threading.DispatcherPriority.Loaded);
+    }
+
+    protected override void OnMouseEnter(MouseEventArgs e)
+    {
+        base.OnMouseEnter(e);
+        UpdateVisualStates(true);
+    }
+
+    protected override void OnMouseLeave(MouseEventArgs e)
+    {
+        base.OnMouseLeave(e);
+        UpdateVisualStates(true);
+    }
+
+    protected override void OnGotFocus(RoutedEventArgs e)
+    {
+        base.OnGotFocus(e);
+        UpdateVisualStates(true);
+    }
+
+    protected override void OnLostFocus(RoutedEventArgs e)
+    {
+        base.OnLostFocus(e);
+        UpdateVisualStates(true);
+    }
+
+    protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+    {
+        base.OnPropertyChanged(e);
+        
+        if (e.Property == IsEnabledProperty)
+        {
+            UpdateVisualStates(true);
+        }
     }
 
     protected override DependencyObject GetContainerForItemOverride()
@@ -339,6 +377,48 @@ public class ShadcnSelect : ItemsControl
         {
             _popup.IsOpen = isOpen;
         }
+        UpdateVisualStates(true);
+    }
+
+    #endregion
+
+    #region Visual State Management
+
+    private void UpdateVisualStates(bool useTransitions)
+    {
+        // Common States
+        if (!IsEnabled)
+        {
+            VisualStateManager.GoToState(this, "Disabled", useTransitions);
+        }
+        else if (IsMouseOver)
+        {
+            VisualStateManager.GoToState(this, "MouseOver", useTransitions);
+        }
+        else
+        {
+            VisualStateManager.GoToState(this, "Normal", useTransitions);
+        }
+
+        // Focus States
+        if (IsFocused)
+        {
+            VisualStateManager.GoToState(this, "Focused", useTransitions);
+        }
+        else
+        {
+            VisualStateManager.GoToState(this, "Unfocused", useTransitions);
+        }
+
+        // Dropdown States
+        if (IsDropDownOpen)
+        {
+            VisualStateManager.GoToState(this, "Open", useTransitions);
+        }
+        else
+        {
+            VisualStateManager.GoToState(this, "Closed", useTransitions);
+        }
     }
 
     #endregion
@@ -469,11 +549,12 @@ public class ShadcnSelectItem : ContentControl
     public ShadcnSelectItem()
     {
         MouseLeftButtonUp += OnMouseLeftButtonUp;
+        MouseLeftButtonDown += OnMouseLeftButtonDown;
     }
 
     public static readonly DependencyProperty IsSelectedProperty =
         DependencyProperty.Register(nameof(IsSelected), typeof(bool), typeof(ShadcnSelectItem),
-            new FrameworkPropertyMetadata(false));
+            new FrameworkPropertyMetadata(false, OnIsSelectedChanged));
 
     public bool IsSelected
     {
@@ -491,9 +572,71 @@ public class ShadcnSelectItem : ContentControl
         remove => RemoveHandler(SelectEvent, value);
     }
 
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+        UpdateVisualStates(false);
+    }
+
+    protected override void OnMouseEnter(MouseEventArgs e)
+    {
+        base.OnMouseEnter(e);
+        UpdateVisualStates(true);
+    }
+
+    protected override void OnMouseLeave(MouseEventArgs e)
+    {
+        base.OnMouseLeave(e);
+        UpdateVisualStates(true);
+    }
+
+    private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        UpdateVisualStates(true);
+    }
+
     private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
         RaiseEvent(new RoutedEventArgs(SelectEvent));
+        UpdateVisualStates(true);
         e.Handled = true;
+    }
+
+    private static void OnIsSelectedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is ShadcnSelectItem item)
+        {
+            item.UpdateVisualStates(true);
+        }
+    }
+
+    private void UpdateVisualStates(bool useTransitions)
+    {
+        // Common States
+        if (IsMouseOver)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                VisualStateManager.GoToState(this, "Pressed", useTransitions);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "MouseOver", useTransitions);
+            }
+        }
+        else
+        {
+            VisualStateManager.GoToState(this, "Normal", useTransitions);
+        }
+
+        // Selection States
+        if (IsSelected)
+        {
+            VisualStateManager.GoToState(this, "Selected", useTransitions);
+        }
+        else
+        {
+            VisualStateManager.GoToState(this, "Unselected", useTransitions);
+        }
     }
 }

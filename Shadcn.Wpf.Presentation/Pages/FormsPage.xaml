@@ -15,10 +15,10 @@
         <Style x:Key="SectionStyle" TargetType="Border">
             <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="BorderThickness" Value="{DynamicResource BorderThin}"/>
+            <Setter Property="CornerRadius" Value="{DynamicResource RadiusLg}"/>
+            <Setter Property="Padding" Value="{DynamicResource Spacing5}"/>
+            <Setter Property="Margin" Value="{DynamicResource SpacingBottomLg}"/>
         </Style>
     </Page.Resources>
 

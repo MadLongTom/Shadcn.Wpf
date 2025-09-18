@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:Shadcn.Wpf.Controls">
 
     <!-- Define local resources to ensure they're available -->
-    <CornerRadius x:Key="ButtonRadiusMd">6</CornerRadius>
+    <!-- Removed local ButtonRadiusMd - now using global RadiusMd from Layout.xaml -->
     
     <!-- Fallback colors to prevent UnsetValue errors -->
     <SolidColorBrush x:Key="FallbackPrimaryBrush">#0F172A</SolidColorBrush>
@@ -22,7 +22,7 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="{StaticResource ButtonRadiusMd}"
+                    CornerRadius="{DynamicResource RadiusMd}"
                     Padding="{TemplateBinding Padding}"
                     RenderTransformOrigin="0.5,0.5">
                 <Border.RenderTransform>
@@ -33,7 +33,7 @@
                            VerticalAlignment="Center">
                     <ContentPresenter x:Name="PART_Icon"
                                     Content="{TemplateBinding Icon}"
-                                    Margin="0,0,4,0"
+                                    Margin="{DynamicResource IconMarginXs}"
                                     VerticalAlignment="Center"/>
                     <ContentPresenter x:Name="PART_Content"
                                     Content="{TemplateBinding Content}"
@@ -244,12 +244,12 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="16,8"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource BorderThin}"/>
+        <Setter Property="Padding" Value="{DynamicResource ComponentPaddingMd}"/>
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="MinHeight" Value="36"/>
+        <Setter Property="MinHeight" Value="{DynamicResource ControlHeightMd}"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Effect" Value="{x:Null}"/>
     </Style>
@@ -260,7 +260,7 @@
         <Setter Property="Background" Value="{DynamicResource DestructiveBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource DestructiveForegroundBrush}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource BorderThin}"/>
     </Style>
 
     <!-- Outline Button Style -->

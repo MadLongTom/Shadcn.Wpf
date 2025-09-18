@@ -10,7 +10,7 @@
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Border x:Name="ThumbBorder"
                             Background="{DynamicResource ForegroundBrush}"
-                            CornerRadius="4"
+                            CornerRadius="{DynamicResource RadiusSm}"
                             Opacity="0.4">
                     </Border>
                     <ControlTemplate.Triggers>
@@ -31,7 +31,7 @@
     <!-- Scroll Button Style -->
     <Style x:Key="ShadcnScrollButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource BorderNone}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
@@ -44,12 +44,12 @@
     <!-- Vertical ScrollBar Template (simplified) -->
     <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type controls:ShadcnScrollBar}">
         <Grid x:Name="Bg" SnapsToDevicePixels="True" shell:WindowChrome.IsHitTestVisibleInChrome="True">
-            <Border Background="{DynamicResource MutedBrush}" CornerRadius="4" Opacity="0.2"/>
-            <Track x:Name="PART_Track" IsDirectionReversed="True" Margin="2" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+            <Border Background="{DynamicResource MutedBrush}" CornerRadius="{DynamicResource RadiusSm}" Opacity="0.2"/>
+            <Track x:Name="PART_Track" IsDirectionReversed="True" Margin="{DynamicResource SpacingLeftXs}" shell:WindowChrome.IsHitTestVisibleInChrome="True">
                 <Track.Thumb>
                     <Thumb Style="{StaticResource ShadcnScrollThumb}"
                            Width="{Binding ThumbSize, RelativeSource={RelativeSource AncestorType={x:Type controls:ShadcnScrollBar}}}"
-                           MinHeight="20"
+                           MinHeight="{DynamicResource Space5}"
                            shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
                 </Track.Thumb>
             </Track>
@@ -64,12 +64,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MaxWidth="0"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.ColumnSpan="3" Background="{DynamicResource MutedBrush}" CornerRadius="4" Opacity="0.2"/>
-            <Track x:Name="PART_Track" Grid.Column="1" IsDirectionReversed="True" Margin="2" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+            <Border Grid.ColumnSpan="3" Background="{DynamicResource MutedBrush}" CornerRadius="{DynamicResource RadiusSm}" Opacity="0.2"/>
+            <Track x:Name="PART_Track" Grid.Column="1" IsDirectionReversed="True" Margin="{DynamicResource SpacingLeftXs}" shell:WindowChrome.IsHitTestVisibleInChrome="True">
                 <Track.Thumb>
                     <Thumb Style="{StaticResource ShadcnScrollThumb}"
                            Height="{Binding ThumbSize, RelativeSource={RelativeSource AncestorType={x:Type controls:ShadcnScrollBar}}}"
-                           MinWidth="20"
+                           MinWidth="{DynamicResource Space5}"
                            shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
                 </Track.Thumb>
             </Track>
