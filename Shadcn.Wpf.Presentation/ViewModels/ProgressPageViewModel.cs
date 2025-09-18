@@ -1,4 +1,4 @@
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Shadcn.Wpf.Services;
 using System.Windows;
@@ -30,7 +30,7 @@ public partial class ProgressPageViewModel : BasePageViewModel
     [ObservableProperty]
     private bool _isDownloadRunning = false;
 
-    public ProgressPageViewModel(IMessageService messageService) 
+    public ProgressPageViewModel(IMessageService messageService)
         : base("Progress Components", "Progress bars and loading indicators")
     {
         _messageService = messageService;
@@ -111,18 +111,12 @@ public partial class ProgressPageViewModel : BasePageViewModel
 
         try
         {
-            await Task.Run(async () =>
+            while(DownloadProgressValue < 100)
             {
-                for (int i = 0; i <= 100; i += 2)
-                {
-                    // 使用Dispatcher.Invoke确保UI更新在UI线程上执行
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        DownloadProgressValue = i;
-                    });
-                    await Task.Delay(50); // Faster simulation
-                }
-            });
+                DownloadProgressValue += new Random().Next(0, 3);
+                if (DownloadProgressValue > 100) DownloadProgressValue = 100;
+                await Task.Delay(30);
+            }
 
             _messageService.ShowInformation("Download completed!", "Success");
         }

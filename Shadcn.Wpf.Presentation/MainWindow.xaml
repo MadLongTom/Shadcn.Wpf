@@ -14,7 +14,7 @@
         EnableDropShadow="True"
         EnableAnimations="True"
         WindowStartupLocation="CenterScreen">
-
+    
     <controls:ShadcnWindow.Icon>
         <DrawingImage>
             <DrawingImage.Drawing>
@@ -85,7 +85,7 @@
                             VerticalAlignment="Center">
                     <controls:ShadcnTextBlock Text="{Binding StatusMessage}"
                                             VerticalAlignment="Center"/>
-                    <controls:ShadcnTextBlock Text=" | 按 F12 打开 ShadcnWindow 测试"
+                    <controls:ShadcnTextBlock Text=" | Press F12 to open new ShadcnWindow"
                                             VerticalAlignment="Center"
                                             Foreground="{DynamicResource MutedForegroundBrush}" />
                 </StackPanel>

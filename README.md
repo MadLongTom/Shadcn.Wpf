@@ -12,7 +12,7 @@
 </div>
 
 A modern WPF component library inspired by [shadcn/ui](https://ui.shadcn.com/) design principles, providing beautiful, consistent, and easy-to-use UI components for .NET 9 WPF applications.
-
+![alt text](image.png)
 ## ✨ Features
 
 - 🎨 **Modern Design System** - Following shadcn/ui design standards for consistent visual experience

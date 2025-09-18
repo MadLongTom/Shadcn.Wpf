@@ -12,7 +12,7 @@
 </div>
 
 一个基于 [shadcn/ui](https://ui.shadcn.com/) 设计理念的现代化 WPF 组件库，为 .NET 9 WPF 应用程序提供美观、一致且易用的 UI 组件集合。
-
+![alt text](image.png)
 ## ✨ 特性
 
 - 🎨 **现代化设计系统** - 遵循 shadcn/ui 设计规范，提供一致的视觉体验
