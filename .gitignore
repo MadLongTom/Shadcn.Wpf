@@ -361,3 +361,14 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.iml
+.idea_modules/
+*.iws
+*.ipr
+*.iml
+*.swp
+*.swo
