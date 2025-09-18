@@ -315,16 +315,4 @@
         </Setter>
     </Style>
 
-    <!-- TestShadcnWindow Style - 基于 ShadcnWindow 样式 -->
-    <Style TargetType="local:TestShadcnWindow" BasedOn="{StaticResource {x:Type controls:ShadcnWindow}}"
-           xmlns:local="clr-namespace:Shadcn.Wpf">
-        <!-- 继承所有 ShadcnWindow 的样式设置 -->
-    </Style>
-
-    <!-- MainWindow Style - 基于 ShadcnWindow 样式 -->
-    <Style TargetType="local:MainWindow" BasedOn="{StaticResource {x:Type controls:ShadcnWindow}}"
-           xmlns:local="clr-namespace:Shadcn.Wpf">
-        <!-- 继承所有 ShadcnWindow 的样式设置 -->
-    </Style>
-
 </ResourceDictionary>

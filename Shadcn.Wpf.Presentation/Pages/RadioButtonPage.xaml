@@ -1,0 +1,194 @@
+<Page x:Class="Shadcn.Wpf.Presentation.Pages.RadioButtonPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls;assembly=Shadcn.Wpf"
+      xmlns:viewmodels="clr-namespace:Shadcn.Wpf.Presentation.ViewModels"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance viewmodels:RadioButtonPageViewModel}"
+      Title="RadioButton"
+      Background="{DynamicResource BackgroundBrush}">
+
+    <ScrollViewer Padding="20" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            
+            <!-- Page Header -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="RadioButton" 
+                                        TextSize="Heading1" 
+                                        FontWeight="Bold"
+                                        Margin="0,0,0,8"/>
+                <controls:ShadcnTextBlock Text="A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time."
+                                        FontSize="16"
+                                        Foreground="{DynamicResource MutedForegroundBrush}"
+                                        TextWrapping="Wrap"/>
+            </StackPanel>
+            
+            <!-- Basic Usage -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Basic Usage" 
+                                        FontSize="20" 
+                                        FontWeight="SemiBold"
+                                        Margin="0,0,0,16"/>
+                
+                <controls:ShadcnCard Padding="24" Margin="0,0,0,16">
+                    <StackPanel>
+                        <controls:ShadcnRadioButton Content="Default" GroupName="BasicGroup1"/>
+                        <controls:ShadcnRadioButton Content="Comfortable" GroupName="BasicGroup1" IsChecked="True"/>
+                        <controls:ShadcnRadioButton Content="Compact" GroupName="BasicGroup1"/>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+            
+            <!-- With Descriptions -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="With Text" 
+                                        FontSize="20" 
+                                        FontWeight="SemiBold"
+                                        Margin="0,0,0,16"/>
+                
+                <controls:ShadcnCard Padding="24" Margin="0,0,0,16">
+                    <StackPanel>
+                        <controls:ShadcnRadioButton Content="Starter" 
+                                                    Description="Perfect for individuals getting started with our platform"
+                                                    GroupName="PlanGroup"/>
+                        <controls:ShadcnRadioButton Content="Professional" 
+                                                    Description="Best for growing teams and small businesses"
+                                                    GroupName="PlanGroup"
+                                                    IsChecked="True"/>
+                        <controls:ShadcnRadioButton Content="Enterprise" 
+                                                    Description="Advanced features for large organizations"
+                                                    GroupName="PlanGroup"/>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+            
+            <!-- Sizes -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Sizes" 
+                                        FontSize="20" 
+                                        FontWeight="SemiBold"
+                                        Margin="0,0,0,16"/>
+                
+                <controls:ShadcnCard Padding="24" Margin="0,0,0,16">
+                    <StackPanel>
+                        <controls:ShadcnRadioButton Content="Small" 
+                                                    Size="Small"
+                                                    GroupName="SizeGroup"/>
+                        <controls:ShadcnRadioButton Content="Default" 
+                                                    Size="Default"
+                                                    GroupName="SizeGroup"
+                                                    IsChecked="True"/>
+                        <controls:ShadcnRadioButton Content="Large" 
+                                                    Size="Large"
+                                                    GroupName="SizeGroup"/>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+            
+            <!-- Disabled -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Disabled" 
+                                        FontSize="20" 
+                                        FontWeight="SemiBold"
+                                        Margin="0,0,0,16"/>
+                
+                <controls:ShadcnCard Padding="24" Margin="0,0,0,16">
+                    <StackPanel>
+                        <controls:ShadcnRadioButton Content="Enabled" 
+                                                    GroupName="DisabledGroup"/>
+                        <controls:ShadcnRadioButton Content="Disabled" 
+                                                    Description="This option is disabled"
+                                                    IsEnabled="False"
+                                                    GroupName="DisabledGroup"/>
+                        <controls:ShadcnRadioButton Content="Disabled Selected" 
+                                                    IsEnabled="False"
+                                                    IsChecked="True"
+                                                    GroupName="DisabledGroup2"/>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+            
+            <!-- With Error -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="With Error" 
+                                        FontSize="20" 
+                                        FontWeight="SemiBold"
+                                        Margin="0,0,0,16"/>
+                
+                <controls:ShadcnCard Padding="24" Margin="0,0,0,16">
+                    <StackPanel>
+                        <controls:ShadcnRadioButton Content="Valid Option" 
+                                                    GroupName="ErrorGroup"/>
+                        <controls:ShadcnRadioButton Content="Invalid Option" 
+                                                    Description="This option has validation errors"
+                                                    HasError="True"
+                                                    GroupName="ErrorGroup"/>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+            
+            <!-- Rich Content -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Rich Content" 
+                                        FontSize="20" 
+                                        FontWeight="SemiBold"
+                                        Margin="0,0,0,16"/>
+                
+                <controls:ShadcnCard Padding="24" Margin="0,0,0,16">
+                    <StackPanel>
+                        <controls:ShadcnRadioButton GroupName="NotificationGroup">
+                            <controls:ShadcnRadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ShadcnTextBlock Text="📧" FontSize="16" Margin="0,0,8,0"/>
+                                    <controls:ShadcnTextBlock Text="Email Notifications"/>
+                                </StackPanel>
+                            </controls:ShadcnRadioButton.Content>
+                            <controls:ShadcnRadioButton.Description>
+                                Receive updates and alerts via email
+                            </controls:ShadcnRadioButton.Description>
+                        </controls:ShadcnRadioButton>
+                        
+                        <controls:ShadcnRadioButton GroupName="NotificationGroup" IsChecked="True">
+                            <controls:ShadcnRadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ShadcnTextBlock Text="📱" FontSize="16" Margin="0,0,8,0"/>
+                                    <controls:ShadcnTextBlock Text="Push Notifications"/>
+                                </StackPanel>
+                            </controls:ShadcnRadioButton.Content>
+                            <controls:ShadcnRadioButton.Description>
+                                Receive instant push notifications on your devices
+                            </controls:ShadcnRadioButton.Description>
+                        </controls:ShadcnRadioButton>
+                        
+                        <controls:ShadcnRadioButton GroupName="NotificationGroup">
+                            <controls:ShadcnRadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ShadcnTextBlock Text="📲" FontSize="16" Margin="0,0,8,0"/>
+                                    <controls:ShadcnTextBlock Text="SMS Notifications"/>
+                                </StackPanel>
+                            </controls:ShadcnRadioButton.Content>
+                            <controls:ShadcnRadioButton.Description>
+                                Receive important alerts via SMS
+                            </controls:ShadcnRadioButton.Description>
+                        </controls:ShadcnRadioButton>
+                        
+                        <controls:ShadcnRadioButton GroupName="NotificationGroup">
+                            <controls:ShadcnRadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ShadcnTextBlock Text="🔕" FontSize="16" Margin="0,0,8,0"/>
+                                    <controls:ShadcnTextBlock Text="No Notifications"/>
+                                </StackPanel>
+                            </controls:ShadcnRadioButton.Content>
+                            <controls:ShadcnRadioButton.Description>
+                                Disable all notifications
+                            </controls:ShadcnRadioButton.Description>
+                        </controls:ShadcnRadioButton>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+            
+        </StackPanel>
+    </ScrollViewer>
+</Page>

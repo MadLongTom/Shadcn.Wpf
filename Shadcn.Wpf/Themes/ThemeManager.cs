@@ -202,8 +202,8 @@ public class ThemeManager : INotifyPropertyChanged
 
         // Add new theme resource based on effective theme
         var themeUri = EffectiveTheme == Theme.Dark
-            ? new Uri("pack://application:,,,/Themes/DarkTheme.xaml", UriKind.Absolute)
-            : new Uri("pack://application:,,,/Themes/LightTheme.xaml", UriKind.Absolute);
+            ? new Uri("pack://application:,,,/Shadcn.Wpf;component/Themes/DarkTheme.xaml", UriKind.Absolute)
+            : new Uri("pack://application:,,,/Shadcn.Wpf;component/Themes/LightTheme.xaml", UriKind.Absolute);
 
         System.Diagnostics.Debug.WriteLine($"ApplyTheme: Loading theme from {themeUri}");
 

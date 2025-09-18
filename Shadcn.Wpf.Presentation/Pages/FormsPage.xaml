@@ -1,0 +1,270 @@
+<Page x:Class="Shadcn.Wpf.Presentation.Pages.FormsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls;assembly=Shadcn.Wpf"
+      xmlns:converters="clr-namespace:Shadcn.Wpf.Converters;assembly=Shadcn.Wpf"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      Title="Forms">
+
+    <Page.Resources>
+        <!-- Converters -->
+        <converters:EmailValidationConverter x:Key="EmailValidationConverter"/>
+        <converters:StringLengthConverter x:Key="StringLengthConverter"/>
+        <converters:BooleanToBrushConverter x:Key="BooleanToBrushConverter"/>
+        
+        <Style x:Key="SectionStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+        <StackPanel>
+            <controls:ShadcnTextBlock Text="Form Components" TextSize="Heading1" Margin="0,0,0,8"/>
+            <controls:ShadcnTextBlock Text="Input controls with validation and data binding" Variant="Secondary" Margin="0,0,0,20"/>
+            
+            <!-- Text Inputs -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Text Inputs" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Various text input controls with different states" Margin="0,0,0,12"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <controls:ShadcnTextBlock Text="User Name:" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBox x:Name="UserNameTextBox"
+                                                  Placeholder="Enter your name"
+                                                  Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
+                                                  Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Email Address:" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBox x:Name="EmailTextBox"
+                                                  Placeholder="Enter your email"
+                                                  Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                                                  Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Password:" Margin="0,0,0,4"/>
+                            <controls:ShadcnPasswordBox x:Name="PasswordBox"
+                                                      Placeholder="Enter your password"
+                                                      Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                                                      Margin="0,0,0,12"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2">
+                            <controls:ShadcnTextBlock Text="Disabled Input:" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBox Placeholder="Disabled field"
+                                                  IsEnabled="False"
+                                                  Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Read-only Input:" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBox Text="Read-only value"
+                                                  IsReadOnly="True"
+                                                  Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Error State:" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBox Text="Invalid input"
+                                                  HasError="True"
+                                                  Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBlock Text="This field has an error" 
+                                                    Variant="Destructive" 
+                                                    TextSize="Small"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            
+            <!-- Select Controls -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Select Controls" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Dropdown selection controls with data binding" Margin="0,0,0,12"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <controls:ShadcnTextBlock Text="Select Country:" Margin="0,0,0,4"/>
+                            <controls:ShadcnSelect x:Name="CountrySelect"
+                                                 Placeholder="Choose a country"
+                                                 Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Select Person:" Margin="0,0,0,4"/>
+                            <controls:ShadcnSelect x:Name="PersonSelect"
+                                                 ItemsSource="{Binding People}"
+                                                 SelectedItem="{Binding SelectedPerson}"
+                                                 DisplayMemberPath="Name"
+                                                 Placeholder="Select a person"
+                                                 Margin="0,0,0,12"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2">
+                            <controls:ShadcnTextBlock Text="Multi-Select (ComboBox):" Margin="0,0,0,4"/>
+                            <controls:ShadcnComboBox x:Name="MultiSelect"
+                                                   Placeholder="Select multiple options"
+                                                   IsMultiSelect="True"
+                                                   Margin="0,0,0,12">
+                                <ComboBoxItem Content="Option 1"/>
+                                <ComboBoxItem Content="Option 2"/>
+                                <ComboBoxItem Content="Option 3"/>
+                                <ComboBoxItem Content="Option 4"/>
+                            </controls:ShadcnComboBox>
+                            
+                            <controls:ShadcnTextBlock Text="Disabled Select:" Margin="0,0,0,4"/>
+                            <controls:ShadcnSelect Placeholder="Disabled select"
+                                                 IsEnabled="False"
+                                                 Margin="0,0,0,12"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            
+            <!-- CheckBox Controls -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="CheckBox Controls" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Checkbox controls with different sizes and states" Margin="0,0,0,12"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <controls:ShadcnTextBlock Text="Basic CheckBoxes:" Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Default checkbox" 
+                                                   IsChecked="False" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Checked checkbox" 
+                                                   IsChecked="True" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Indeterminate checkbox" 
+                                                   IsChecked="{x:Null}" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Disabled checkbox" 
+                                                   IsEnabled="False" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Disabled checked" 
+                                                   IsChecked="True" 
+                                                   IsEnabled="False" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnTextBlock Text="With Descriptions:" Margin="0,12,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Enable notifications" 
+                                                   Description="Receive email notifications for important updates"
+                                                   IsChecked="True" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Marketing emails" 
+                                                   Description="Get the latest news and product updates"
+                                                   Margin="0,0,0,8"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2">
+                            <controls:ShadcnTextBlock Text="Different Sizes:" Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Small checkbox" 
+                                                   Size="Small" 
+                                                   IsChecked="True" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Default checkbox" 
+                                                   Size="Default" 
+                                                   IsChecked="True" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Large checkbox" 
+                                                   Size="Large" 
+                                                   IsChecked="True" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnTextBlock Text="Error State:" Margin="0,12,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="Terms and conditions" 
+                                                   Description="Please accept the terms and conditions"
+                                                   HasError="True" 
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnTextBlock Text="Form Example:" Margin="0,12,0,8"/>
+                            
+                            <controls:ShadcnCheckBox Content="I agree to the terms of service" 
+                                                   x:Name="TermsCheckBox"
+                                                   Margin="0,0,0,4"/>
+                            
+                            <controls:ShadcnCheckBox Content="Subscribe to newsletter" 
+                                                   Description="Get weekly updates about new features"
+                                                   x:Name="NewsletterCheckBox"
+                                                   Margin="0,0,0,8"/>
+                            
+                            <controls:ShadcnButton Content="Submit" 
+                                                 Variant="Primary" 
+                                                 IsEnabled="{Binding IsChecked, ElementName=TermsCheckBox}"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            
+            <!-- Form Validation -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Form Validation" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Real-time validation and feedback" Margin="0,0,0,12"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <controls:ShadcnTextBlock Text="Validation Status:" Margin="0,0,0,8"/>
+                            <controls:ShadcnTextBlock Text="{Binding FirstName, Converter={StaticResource StringLengthConverter}}"/>
+                            <controls:ShadcnTextBlock Text="{Binding Email, Converter={StaticResource EmailValidationConverter}}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2">
+                            <controls:ShadcnTextBlock Text="Selected Data:" Margin="0,0,0,8"/>
+                            <controls:ShadcnTextBlock Text="{Binding SelectedPerson.Name, StringFormat='Selected: {0}'}"/>
+                            <controls:ShadcnTextBlock Text="{Binding SelectedPerson.Email, StringFormat='Email: {0}'}"/>
+                            <controls:ShadcnTextBlock Text="{Binding SelectedPerson.Id, StringFormat='ID: {0}'}"/>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <Separator Margin="0,16"/>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <controls:ShadcnButton Content="Reset Form" 
+                                             Variant="Outline" 
+                                             Command="{Binding ResetFormCommand}"
+                                             Margin="0,0,8,0"/>
+                        <controls:ShadcnButton Content="Submit Form" 
+                                             Variant="Primary" 
+                                             Command="{Binding SubmitFormCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

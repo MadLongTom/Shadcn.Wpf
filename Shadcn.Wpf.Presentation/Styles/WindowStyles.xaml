@@ -1,0 +1,18 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Shadcn.Wpf.Controls;assembly=Shadcn.Wpf"
+                    xmlns:local="clr-namespace:Shadcn.Wpf.Presentation">
+
+    <!-- TestShadcnWindow Style - 基于 ShadcnWindow 样式 -->
+    <Style TargetType="local:TestShadcnWindow" BasedOn="{StaticResource {x:Type controls:ShadcnWindow}}">
+        <!-- 继承所有 ShadcnWindow 的样式设置 -->
+        <!-- 可以在这里添加 TestShadcnWindow 特有的样式 -->
+    </Style>
+
+    <!-- MainWindow Style - 基于 ShadcnWindow 样式 -->
+    <Style TargetType="local:MainWindow" BasedOn="{StaticResource {x:Type controls:ShadcnWindow}}">
+        <!-- 继承所有 ShadcnWindow 的样式设置 -->
+        <!-- 可以在这里添加 MainWindow 特有的样式 -->
+    </Style>
+
+</ResourceDictionary>

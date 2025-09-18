@@ -1,0 +1,225 @@
+<Page x:Class="Shadcn.Wpf.Presentation.Pages.TypographyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls;assembly=Shadcn.Wpf"
+      Title="Typography">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="24">
+            
+            <!-- Page Header -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Typography"
+                                        TextSize="Heading1"
+                                        IsEmphasized="True"/>
+                <controls:ShadcnTextBlock Text="Text styling and formatting components for consistent typography."
+                                        TextSize="Large"
+                                        Variant="Secondary"
+                                        TextWrapping="Wrap"
+                                        Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <!-- Heading Sizes -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Headings"
+                                        TextSize="Heading3"
+                                        IsEmphasized="True"
+                                        Margin="0,0,0,16"/>
+                
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Heading 1 - The quick brown fox"
+                                            TextSize="Heading1"
+                                            Margin="0,0,0,12"/>
+                    <controls:ShadcnTextBlock Text="Heading 2 - The quick brown fox"
+                                            TextSize="Heading2"
+                                            Margin="0,0,0,12"/>
+                    <controls:ShadcnTextBlock Text="Heading 3 - The quick brown fox"
+                                            TextSize="Heading3"
+                                            Margin="0,0,0,12"/>
+                    <controls:ShadcnTextBlock Text="Heading 4 - The quick brown fox"
+                                            TextSize="Heading4"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Text Sizes -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Text Sizes"
+                                        TextSize="Heading3"
+                                        IsEmphasized="True"
+                                        Margin="0,0,0,16"/>
+                
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Extra Large - The quick brown fox jumps over the lazy dog"
+                                            TextSize="ExtraLarge"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Large - The quick brown fox jumps over the lazy dog"
+                                            TextSize="Large"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Default - The quick brown fox jumps over the lazy dog"
+                                            TextSize="Default"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Small - The quick brown fox jumps over the lazy dog"
+                                            TextSize="Small"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Extra Small - The quick brown fox jumps over the lazy dog"
+                                            TextSize="ExtraSmall"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Text Variants -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Text Variants"
+                                        TextSize="Heading3"
+                                        IsEmphasized="True"
+                                        Margin="0,0,0,16"/>
+                
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Default - Normal text color"
+                                            Variant="Default"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Primary - Primary brand color"
+                                            Variant="Primary"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Secondary - Muted text color"
+                                            Variant="Secondary"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Success - Success state color"
+                                            Variant="Success"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Warning - Warning state color"
+                                            Variant="Warning"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Destructive - Error state color"
+                                            Variant="Destructive"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Accent - Accent color"
+                                            Variant="Accent"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Text Formatting -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Text Formatting"
+                                        TextSize="Heading3"
+                                        IsEmphasized="True"
+                                        Margin="0,0,0,16"/>
+                
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Normal text without any special formatting"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Emphasized (Bold) text"
+                                            IsEmphasized="True"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Italic text"
+                                            IsItalic="True"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Underlined text"
+                                            IsUnderlined="True"
+                                            Style="{StaticResource ShadcnTextBlockWithDecorations}"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Strikethrough text"
+                                            IsStrikethrough="True"
+                                            Style="{StaticResource ShadcnTextBlockWithDecorations}"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Combined: Bold, Italic, and Underlined"
+                                            IsEmphasized="True"
+                                            IsItalic="True"
+                                            IsUnderlined="True"
+                                            Style="{StaticResource ShadcnTextBlockWithDecorations}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Predefined Styles -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Predefined Styles"
+                                        TextSize="Heading3"
+                                        IsEmphasized="True"
+                                        Margin="0,0,0,16"/>
+                
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Display Text Style"
+                                            Style="{StaticResource ShadcnDisplayText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Title Text Style"
+                                            Style="{StaticResource ShadcnTitleText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Subtitle Text Style"
+                                            Style="{StaticResource ShadcnSubtitleText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Body Text Style - This is a longer paragraph of text that demonstrates how body text appears with proper line height and spacing. It should be comfortable to read and well-spaced for optimal readability."
+                                            Style="{StaticResource ShadcnBodyText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Caption Text Style - Small, muted text for captions and metadata"
+                                            Style="{StaticResource ShadcnCaptionText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="const myVariable = 'Hello, World!';"
+                                            Style="{StaticResource ShadcnCodeText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Link Text Style"
+                                            Style="{StaticResource ShadcnLinkText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Error Text Style - This indicates an error"
+                                            Style="{StaticResource ShadcnErrorText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Success Text Style - This indicates success"
+                                            Style="{StaticResource ShadcnSuccessText}"
+                                            Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnTextBlock Text="Warning Text Style - This indicates a warning"
+                                            Style="{StaticResource ShadcnWarningText}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Custom Color Example -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="Custom Colors"
+                                        TextSize="Heading3"
+                                        IsEmphasized="True"
+                                        Margin="0,0,0,16"/>
+                
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Custom red text"
+                                            TextColor="Red"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Custom blue text"
+                                            TextColor="Blue"
+                                            Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Custom green text"
+                                            TextColor="Green"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Line Height Example -->
+            <StackPanel>
+                <controls:ShadcnTextBlock Text="Custom Line Height"
+                                        TextSize="Heading3"
+                                        IsEmphasized="True"
+                                        Margin="0,0,0,16"/>
+                
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="This paragraph has normal line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                            TextWrapping="Wrap"
+                                            Margin="0,0,0,16"/>
+                    
+                    <controls:ShadcnTextBlock Text="This paragraph has increased line height for better readability. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                            TextWrapping="Wrap"
+                                            LineHeight="32"
+                                            Margin="0,0,0,16"/>
+                    
+                    <controls:ShadcnTextBlock Text="This paragraph has tight line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                            TextWrapping="Wrap"
+                                            LineHeight="16"/>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

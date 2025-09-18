@@ -1,0 +1,22 @@
+﻿<Application x:Class="Shadcn.Wpf.Presentation.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Shadcn.Wpf.Presentation"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Icons -->
+                <ResourceDictionary Source="pack://application:,,,/Shadcn.Wpf;component/Styles/Icons.xaml"/>
+                <!-- Shadcn Styles -->
+                <ResourceDictionary Source="pack://application:,,,/Shadcn.Wpf;component/Styles/ShadcnStyles.xaml"/>
+                <!-- ScrollBar Styles -->
+                <ResourceDictionary Source="pack://application:,,,/Shadcn.Wpf;component/Styles/ScrollBarStyles.xaml"/>
+                <!-- Default Light Theme -->
+                <ResourceDictionary Source="pack://application:,,,/Shadcn.Wpf;component/Themes/LightTheme.xaml"/>
+                <!-- Presentation Window Styles -->
+                <ResourceDictionary Source="Styles/WindowStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
