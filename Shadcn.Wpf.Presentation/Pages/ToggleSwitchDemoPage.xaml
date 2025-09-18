@@ -1,0 +1,250 @@
+<Page x:Class="Shadcn.Wpf.Presentation.Pages.ToggleSwitchDemoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls;assembly=Shadcn.Wpf"
+      xmlns:viewmodels="clr-namespace:Shadcn.Wpf.Presentation.ViewModels"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance viewmodels:ToggleSwitchDemoPageViewModel}"
+      Title="Toggle Switch Demo">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="40">
+        <StackPanel MaxWidth="800">
+            <!-- Header -->
+            <controls:ShadcnTextBlock Text="Toggle Switch" 
+                                    TextSize="ExtraLarge" 
+                                    IsEmphasized="True" 
+                                    Margin="0,0,0,8"/>
+            
+            <controls:ShadcnTextBlock Text="A control that allows the user to toggle between checked and not checked." 
+                                    TextSize="Large" 
+                                    Foreground="{DynamicResource MutedForegroundBrush}"
+                                    Margin="0,0,0,32"/>
+
+            <!-- Basic Examples -->
+            <controls:ShadcnCard Margin="0,0,0,24">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Basic Usage" 
+                                            TextSize="Large" 
+                                            IsEmphasized="True" 
+                                            Margin="0,0,0,16"/>
+                    
+                    <StackPanel Margin="0,0,0,16">
+                        <controls:ShadcnToggleSwitch Content="Airplane mode" 
+                                                   IsChecked="{Binding IsAirplaneModeEnabled, Mode=TwoWay}"
+                                                   Margin="0,0,0,12"/>
+                        
+                        <controls:ShadcnToggleSwitch Content="Wi-Fi" 
+                                                   IsChecked="{Binding IsWiFiEnabled, Mode=TwoWay}"/>
+                    </StackPanel>
+                    
+                    <controls:ShadcnTextBlock Text="{Binding BasicStatusText}" 
+                                            Foreground="{DynamicResource MutedForegroundBrush}"/>
+                </StackPanel>
+            </controls:ShadcnCard>
+
+            <!-- Sizes -->
+            <controls:ShadcnCard Margin="0,0,0,24">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Sizes" 
+                                            TextSize="Large" 
+                                            IsEmphasized="True" 
+                                            Margin="0,0,0,16"/>
+                    
+                    <StackPanel>
+                        <controls:ShadcnToggleSwitch Content="Small toggle switch" 
+                                                   Size="Small"
+                                                   IsChecked="True"
+                                                   Margin="0,0,0,12"/>
+                        
+                        <controls:ShadcnToggleSwitch Content="Default toggle switch" 
+                                                   Size="Default"
+                                                   IsChecked="True"
+                                                   Margin="0,0,0,12"/>
+                        
+                        <controls:ShadcnToggleSwitch Content="Large toggle switch" 
+                                                   Size="Large"
+                                                   IsChecked="True"/>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ShadcnCard>
+
+            <!-- With Description -->
+            <controls:ShadcnCard Margin="0,0,0,24">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="With Description" 
+                                            TextSize="Large" 
+                                            IsEmphasized="True" 
+                                            Margin="0,0,0,16"/>
+                    
+                    <StackPanel>
+                        <controls:ShadcnToggleSwitch Content="Marketing emails" 
+                                                   Description="Receive emails about new products, features, and more."
+                                                   IsChecked="{Binding IsMarketingEmailsEnabled, Mode=TwoWay}"
+                                                   Margin="0,0,0,16"/>
+                        
+                        <controls:ShadcnToggleSwitch Content="Security emails" 
+                                                   Description="Receive emails about your account security."
+                                                   IsChecked="{Binding IsSecurityEmailsEnabled, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ShadcnCard>
+
+            <!-- With Custom Text -->
+            <controls:ShadcnCard Margin="0,0,0,24">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="With Custom Text" 
+                                            TextSize="Large" 
+                                            IsEmphasized="True" 
+                                            Margin="0,0,0,16"/>
+                    
+                    <StackPanel>
+                        <controls:ShadcnToggleSwitch Content="Dark mode" 
+                                                   OnText="ON"
+                                                   OffText="OFF"
+                                                   IsChecked="{Binding IsDarkModeEnabled, Mode=TwoWay}"
+                                                   Margin="0,0,0,16"/>
+                        
+                        <controls:ShadcnToggleSwitch Content="Auto-save" 
+                                                   OnText="✓"
+                                                   OffText="✗"
+                                                   Size="Large"
+                                                   IsChecked="{Binding IsAutoSaveEnabled, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ShadcnCard>
+
+            <!-- States -->
+            <controls:ShadcnCard Margin="0,0,0,24">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="States" 
+                                            TextSize="Large" 
+                                            IsEmphasized="True" 
+                                            Margin="0,0,0,16"/>
+                    
+                    <StackPanel>
+                        <controls:ShadcnToggleSwitch Content="Disabled (unchecked)" 
+                                                   IsEnabled="False"
+                                                   IsChecked="False"
+                                                   Margin="0,0,0,12"/>
+                        
+                        <controls:ShadcnToggleSwitch Content="Disabled (checked)" 
+                                                   IsEnabled="False"
+                                                   IsChecked="True"
+                                                   Margin="0,0,0,12"/>
+                        
+                        <controls:ShadcnToggleSwitch Content="Error state" 
+                                                   HasError="True"
+                                                   Description="This setting has an error."
+                                                   IsChecked="{Binding HasErrorToggle, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ShadcnCard>
+
+            <!-- Data Binding Example -->
+            <controls:ShadcnCard Margin="0,0,0,24">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Data Binding Example" 
+                                            TextSize="Large" 
+                                            IsEmphasized="True" 
+                                            Margin="0,0,0,16"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <controls:ShadcnToggleSwitch Content="Enable notifications" 
+                                                       Description="Allow the app to send you notifications."
+                                                       IsChecked="{Binding IsNotificationsEnabled, Mode=TwoWay}"
+                                                       Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnToggleSwitch Content="Sound notifications" 
+                                                       Description="Play sound when receiving notifications."
+                                                       IsEnabled="{Binding IsNotificationsEnabled}"
+                                                       IsChecked="{Binding IsSoundEnabled, Mode=TwoWay}"
+                                                       Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnToggleSwitch Content="Vibrate notifications" 
+                                                       Description="Vibrate device when receiving notifications."
+                                                       IsEnabled="{Binding IsNotificationsEnabled}"
+                                                       IsChecked="{Binding IsVibrateEnabled, Mode=TwoWay}"/>
+                        </StackPanel>
+                        
+                        <Border Grid.Column="1" 
+                                Background="{DynamicResource MutedBrush}"
+                                CornerRadius="8"
+                                Padding="16"
+                                Margin="24,0,0,0"
+                                VerticalAlignment="Top">
+                            <StackPanel>
+                                <controls:ShadcnTextBlock Text="Current Settings:" 
+                                                        IsEmphasized="True"
+                                                        Margin="0,0,0,8"/>
+                                <controls:ShadcnTextBlock Text="{Binding NotificationSettingsText}"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </controls:ShadcnCard>
+
+            <!-- Form Example -->
+            <controls:ShadcnCard>
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Settings Form Example" 
+                                            TextSize="Large" 
+                                            IsEmphasized="True" 
+                                            Margin="0,0,0,16"/>
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <controls:ShadcnToggleSwitch Grid.Row="0"
+                                                   Content="Two-factor authentication" 
+                                                   Description="Add an extra layer of security to your account."
+                                                   IsChecked="{Binding IsTwoFactorEnabled, Mode=TwoWay}"
+                                                   Margin="0,0,0,16"/>
+                        
+                        <controls:ShadcnToggleSwitch Grid.Row="1"
+                                                   Content="Email notifications" 
+                                                   Description="Receive email notifications for important updates."
+                                                   IsChecked="{Binding IsEmailNotificationsEnabled, Mode=TwoWay}"
+                                                   Margin="0,0,0,16"/>
+                        
+                        <controls:ShadcnToggleSwitch Grid.Row="2"
+                                                   Content="Push notifications" 
+                                                   Description="Receive push notifications on your devices."
+                                                   IsChecked="{Binding IsPushNotificationsEnabled, Mode=TwoWay}"
+                                                   Margin="0,0,0,16"/>
+                        
+                        <controls:ShadcnToggleSwitch Grid.Row="3"
+                                                   Content="Analytics" 
+                                                   Description="Help us improve by sharing anonymous usage data."
+                                                   IsChecked="{Binding IsAnalyticsEnabled, Mode=TwoWay}"
+                                                   Margin="0,0,0,24"/>
+                        
+                        <StackPanel Grid.Row="4" Orientation="Horizontal">
+                            <controls:ShadcnButton Content="Save Settings" 
+                                                 Variant="Primary"
+                                                 Command="{Binding SaveSettingsCommand}"
+                                                 Margin="0,0,12,0"/>
+                            
+                            <controls:ShadcnButton Content="Reset to Defaults" 
+                                                 Variant="Outline"
+                                                 Command="{Binding ResetSettingsCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </controls:ShadcnCard>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

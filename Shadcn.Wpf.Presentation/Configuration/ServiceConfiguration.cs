@@ -30,6 +30,7 @@ public static class ServiceConfiguration
         services.AddTransient<TypographyPageViewModel>();
         services.AddTransient<NavigationPageViewModel>();
         services.AddTransient<DatePickerDemoPageViewModel>();
+        services.AddTransient<ToggleSwitchDemoPageViewModel>();
         services.AddTransient<AboutPageViewModel>();
 
         return services;

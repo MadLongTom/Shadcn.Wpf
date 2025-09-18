@@ -1,0 +1,311 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Shadcn.Wpf.Controls">
+
+    <!-- ToggleSwitch Template -->
+    <ControlTemplate x:Key="ShadcnToggleSwitchTemplate" TargetType="{x:Type controls:ShadcnToggleSwitch}">
+        <StackPanel>
+            <!-- Main ToggleSwitch Content -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- ToggleSwitch Visual -->
+                <Grid x:Name="ToggleSwitchContainer"
+                      Grid.Column="0"
+                      VerticalAlignment="Center"
+                      Margin="0,0,0,0">
+                    
+                    <!-- Track -->
+                    <Border x:Name="Track"
+                            Width="44"
+                            Height="24"
+                            Background="{DynamicResource MutedBrush}"
+                            BorderBrush="{DynamicResource BorderBrush}"
+                            BorderThickness="2"
+                            CornerRadius="12">
+                        
+                        <!-- State Text Container -->
+                        <Grid>
+                            <!-- Off Text (显示在右边，未选中时可见) -->
+                            <TextBlock x:Name="OffTextBlock"
+                                       Text="{TemplateBinding OffText}"
+                                       FontFamily="{DynamicResource DefaultFontFamily}"
+                                       FontSize="10"
+                                       Foreground="{DynamicResource MutedForegroundBrush}"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,6,0"
+                                       Opacity="1">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            
+                            <!-- On Text (显示在左边，选中时可见) -->
+                            <TextBlock x:Name="OnTextBlock"
+                                       Text="{TemplateBinding OnText}"
+                                       FontFamily="{DynamicResource DefaultFontFamily}"
+                                       FontSize="10"
+                                       Foreground="{DynamicResource PrimaryForegroundBrush}"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="6,0,0,0"
+                                       Opacity="0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Thumb -->
+                    <Border x:Name="Thumb"
+                            Width="20"
+                            Height="20"
+                            Background="{DynamicResource BackgroundBrush}"
+                            BorderBrush="{DynamicResource BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="10"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="2,0,0,0">
+                        <Border.RenderTransform>
+                            <TranslateTransform x:Name="ThumbTransform" X="0"/>
+                        </Border.RenderTransform>
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" 
+                                              Opacity="0.1" 
+                                              ShadowDepth="1" 
+                                              BlurRadius="3"/>
+                        </Border.Effect>
+                    </Border>
+                </Grid>
+                
+                <!-- Content -->
+                <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                    <ContentPresenter x:Name="ContentPresenter"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    TextElement.Foreground="{DynamicResource ForegroundBrush}"
+                                    TextElement.FontFamily="{DynamicResource DefaultFontFamily}"
+                                    TextElement.FontSize="14"
+                                    VerticalAlignment="Center"/>
+                    
+                    <!-- Description -->
+                    <TextBlock x:Name="DescriptionText"
+                               Text="{TemplateBinding Description}"
+                               FontFamily="{DynamicResource DefaultFontFamily}"
+                               FontSize="12"
+                               Foreground="{DynamicResource MutedForegroundBrush}"
+                               Margin="0,4,0,0"
+                               TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        
+        <ControlTemplate.Triggers>
+            <!-- Size Triggers -->
+            <Trigger Property="Size" Value="Small">
+                <Setter TargetName="Track" Property="Width" Value="32"/>
+                <Setter TargetName="Track" Property="Height" Value="18"/>
+                <Setter TargetName="Track" Property="CornerRadius" Value="9"/>
+                <Setter TargetName="Thumb" Property="Width" Value="14"/>
+                <Setter TargetName="Thumb" Property="Height" Value="14"/>
+                <Setter TargetName="Thumb" Property="CornerRadius" Value="7"/>
+                <Setter TargetName="OffTextBlock" Property="FontSize" Value="8"/>
+                <Setter TargetName="OnTextBlock" Property="FontSize" Value="8"/>
+                <Setter TargetName="OffTextBlock" Property="Margin" Value="0,0,4,0"/>
+                <Setter TargetName="OnTextBlock" Property="Margin" Value="4,0,0,0"/>
+                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="12"/>
+            </Trigger>
+            <Trigger Property="Size" Value="Large">
+                <Setter TargetName="Track" Property="Width" Value="56"/>
+                <Setter TargetName="Track" Property="Height" Value="30"/>
+                <Setter TargetName="Track" Property="CornerRadius" Value="15"/>
+                <Setter TargetName="Thumb" Property="Width" Value="26"/>
+                <Setter TargetName="Thumb" Property="Height" Value="26"/>
+                <Setter TargetName="Thumb" Property="CornerRadius" Value="13"/>
+                <Setter TargetName="OffTextBlock" Property="FontSize" Value="12"/>
+                <Setter TargetName="OnTextBlock" Property="FontSize" Value="12"/>
+                <Setter TargetName="OffTextBlock" Property="Margin" Value="0,0,8,0"/>
+                <Setter TargetName="OnTextBlock" Property="Margin" Value="8,0,0,0"/>
+                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="16"/>
+            </Trigger>
+            
+            <!-- State Triggers -->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Track" Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+                <Setter TargetName="OffTextBlock" Property="Opacity" Value="0"/>
+                <Setter TargetName="OnTextBlock" Property="Opacity" Value="1"/>
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ThumbTransform"
+                                           Storyboard.TargetProperty="X"
+                                           To="20"
+                                           Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ThumbTransform"
+                                           Storyboard.TargetProperty="X"
+                                           To="0"
+                                           Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            
+            <!-- Size-specific checked state animations -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                    <Condition Property="Size" Value="Small"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ThumbTransform"
+                                           Storyboard.TargetProperty="X"
+                                           To="14"
+                                           Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ThumbTransform"
+                                           Storyboard.TargetProperty="X"
+                                           To="0"
+                                           Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True"/>
+                    <Condition Property="Size" Value="Large"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ThumbTransform"
+                                           Storyboard.TargetProperty="X"
+                                           To="26"
+                                           Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <MultiTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ThumbTransform"
+                                           Storyboard.TargetProperty="X"
+                                           To="0"
+                                           Duration="0:0:0.2">
+                                <DoubleAnimation.EasingFunction>
+                                    <CubicEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.ExitActions>
+            </MultiTrigger>
+            
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            </Trigger>
+            
+            <Trigger Property="IsFocused" Value="True">
+                <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource RingBrush}"/>
+            </Trigger>
+            
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="ToggleSwitchContainer" Property="Opacity" Value="0.5"/>
+                <Setter TargetName="ContentPresenter" Property="Opacity" Value="0.5"/>
+                <Setter TargetName="DescriptionText" Property="Opacity" Value="0.5"/>
+            </Trigger>
+            
+            <Trigger Property="HasError" Value="True">
+                <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource DestructiveBrush}"/>
+                <Setter TargetName="DescriptionText" Property="Foreground" Value="{DynamicResource DestructiveBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Default ToggleSwitch Style -->
+    <Style TargetType="{x:Type controls:ShadcnToggleSwitch}">
+        <Setter Property="Template" Value="{StaticResource ShadcnToggleSwitchTemplate}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    </Style>
+
+</ResourceDictionary>

@@ -212,6 +212,7 @@ public partial class MainWindowViewModel : ObservableRecipient
                     new() { Icon = GetIcon("FolderIcon"), Title = "TabControl", Tag = "tabcontrol" },
                     new() { Icon = GetIcon("FileIcon"), Title = "ListBox", Tag = "listbox" },
                     new() { Icon = GetIcon("CalendarIcon"), Title = "DatePicker", Tag = "datepicker" },
+                    new() { Icon = GetIcon("CheckIcon"), Title = "ToggleSwitch", Tag = "toggleswitch" },
                     new() { Icon = GetIcon("EditIcon"), Title = "Typography", Tag = "typography" },
                     new() { Icon = GetIcon("MenuIcon"), Title = "Navigation", Tag = "navigation" }
                 }

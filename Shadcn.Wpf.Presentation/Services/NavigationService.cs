@@ -43,6 +43,7 @@ public class NavigationService : INavigationService
             "tabcontrol" => new TabControlDemoPage(),
             "listbox" => new ListBoxDemoPage(),
             "datepicker" => new DatePickerDemoPage(),
+            "toggleswitch" => new ToggleSwitchDemoPage(),
             "about" => new AboutPage(),
             _ => new HomePage()
         };

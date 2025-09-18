@@ -29,6 +29,7 @@
         <ResourceDictionary Source="TabControlStyles.xaml"/>
         <ResourceDictionary Source="ListBoxStyles.xaml"/>
         <ResourceDictionary Source="DatePickerStyles.xaml"/>
+        <ResourceDictionary Source="ToggleSwitchStyles.xaml"/>
         <ResourceDictionary Source="WindowStyles.xaml"/>
         <ResourceDictionary Source="PageTransitions.xaml"/>
     </ResourceDictionary.MergedDictionaries>
