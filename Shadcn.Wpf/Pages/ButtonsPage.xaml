@@ -1,0 +1,110 @@
+﻿<Page x:Class="Shadcn.Wpf.Pages.ButtonsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+      Title="Buttons">
+
+    <Page.Resources>
+        <Style x:Key="SectionStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+        <StackPanel>
+            <controls:ShadcnTextBlock Text="Button Components" TextSize="Heading1" Margin="0,0,0,8"/>
+            <controls:ShadcnTextBlock Text="Interactive button examples with different styles and states" Variant="Secondary" Margin="0,0,0,20"/>
+            
+            <!-- Button Variants -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Button Variants" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Different button styles for various use cases" Margin="0,0,0,12"/>
+                    
+                    <WrapPanel Orientation="Horizontal">
+                        <controls:ShadcnButton Content="Default" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Primary" Variant="Primary" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Secondary" Variant="Secondary" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Destructive" Variant="Destructive" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Outline" Variant="Outline" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Ghost" Variant="Ghost" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Link" Variant="Link" Margin="0,0,8,8"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            
+            <!-- Button Sizes -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Button Sizes" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Different button sizes for various layouts" Margin="0,0,0,12"/>
+                    
+                    <WrapPanel Orientation="Horizontal">
+                        <controls:ShadcnButton Content="Small" Size="Small" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Default" Size="Default" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Large" Size="Large" Margin="0,0,8,8"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            
+            <!-- Button States -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Button States" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Different button states and interactions" Margin="0,0,0,12"/>
+                    
+                    <WrapPanel Orientation="Horizontal">
+                        <controls:ShadcnButton Content="Normal" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Disabled" IsEnabled="False" Margin="0,0,8,8"/>
+                        <controls:ShadcnButton Content="Loading" IsLoading="True" Margin="0,0,8,8"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            
+            <!-- Interactive Examples -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Interactive Examples" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Click buttons to see interactive behavior" Margin="0,0,0,12"/>
+                    
+                    <StackPanel>
+                        <controls:ShadcnButton x:Name="ClickCounterButton" 
+                                             Content="{Binding ClickCountMessage}"
+                                             Command="{Binding ClickCounterCommand}"
+                                             Margin="0,0,0,8"/>
+                        
+                        <controls:ShadcnButton Content="Toggle Theme" 
+                                             Variant="Outline"
+                                             Command="{Binding ToggleThemeCommand}"
+                                             Margin="0,0,0,8"/>
+                        
+                        <controls:ShadcnButton Content="Show Message" 
+                                             Variant="Secondary"
+                                             Command="{Binding ShowMessageCommand}"
+                                             Margin="0,0,0,8"/>
+                        
+                        <controls:ShadcnButton Content="Show Confirmation" 
+                                             Variant="Primary"
+                                             Command="{Binding ShowConfirmationCommand}"
+                                             Margin="0,0,0,8"/>
+                        
+                        <controls:ShadcnButton Content="Async Operation" 
+                                             Variant="Ghost"
+                                             Command="{Binding AsyncOperationCommand}"
+                                             IsLoading="{Binding IsLoading}"
+                                             Margin="0,0,0,8"/>
+                        
+                        <controls:ShadcnButton Content="Reset Counter" 
+                                             Variant="Destructive"
+                                             Command="{Binding ResetCounterCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

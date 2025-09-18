@@ -1,0 +1,103 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Typography System -->
+    
+    <!-- Font Families -->
+    <FontFamily x:Key="DefaultFontFamily">Geist, Microsoft YaHei, 微软雅黑, Segoe UI, Tahoma, Arial, Helvetica, sans-serif</FontFamily>
+    <FontFamily x:Key="MonoFontFamily">Consolas, Courier New, 等线, ui-monospace, monospace</FontFamily>
+    
+    <!-- Font Sizes -->
+    <sys:Double x:Key="FontSizeXs" xmlns:sys="clr-namespace:System;assembly=mscorlib">12</sys:Double>
+    <sys:Double x:Key="FontSizeSm" xmlns:sys="clr-namespace:System;assembly=mscorlib">14</sys:Double>
+    <sys:Double x:Key="FontSizeBase" xmlns:sys="clr-namespace:System;assembly=mscorlib">16</sys:Double>
+    <sys:Double x:Key="FontSizeLg" xmlns:sys="clr-namespace:System;assembly=mscorlib">18</sys:Double>
+    <sys:Double x:Key="FontSizeXl" xmlns:sys="clr-namespace:System;assembly=mscorlib">20</sys:Double>
+    <sys:Double x:Key="FontSize2Xl" xmlns:sys="clr-namespace:System;assembly=mscorlib">24</sys:Double>
+    <sys:Double x:Key="FontSize3Xl" xmlns:sys="clr-namespace:System;assembly=mscorlib">30</sys:Double>
+    <sys:Double x:Key="FontSize4Xl" xmlns:sys="clr-namespace:System;assembly=mscorlib">36</sys:Double>
+    
+    <!-- Line Heights -->
+    <sys:Double x:Key="LineHeightNone" xmlns:sys="clr-namespace:System;assembly=mscorlib">1</sys:Double>
+    <sys:Double x:Key="LineHeightTight" xmlns:sys="clr-namespace:System;assembly=mscorlib">1.25</sys:Double>
+    <sys:Double x:Key="LineHeightSnug" xmlns:sys="clr-namespace:System;assembly=mscorlib">1.375</sys:Double>
+    <sys:Double x:Key="LineHeightNormal" xmlns:sys="clr-namespace:System;assembly=mscorlib">1.5</sys:Double>
+    <sys:Double x:Key="LineHeightRelaxed" xmlns:sys="clr-namespace:System;assembly=mscorlib">1.625</sys:Double>
+    <sys:Double x:Key="LineHeightLoose" xmlns:sys="clr-namespace:System;assembly=mscorlib">2</sys:Double>
+    
+    <!-- Font Weights -->
+    <FontWeight x:Key="FontWeightThin">Thin</FontWeight>
+    <FontWeight x:Key="FontWeightExtraLight">ExtraLight</FontWeight>
+    <FontWeight x:Key="FontWeightLight">Light</FontWeight>
+    <FontWeight x:Key="FontWeightNormal">Normal</FontWeight>
+    <FontWeight x:Key="FontWeightMedium">Medium</FontWeight>
+    <FontWeight x:Key="FontWeightSemiBold">SemiBold</FontWeight>
+    <FontWeight x:Key="FontWeightBold">Bold</FontWeight>
+    <FontWeight x:Key="FontWeightExtraBold">ExtraBold</FontWeight>
+    <FontWeight x:Key="FontWeightBlack">Black</FontWeight>
+    
+    <!-- Text Styles -->
+    <Style x:Key="H1TextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSize4Xl}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="LineHeight" Value="40"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    
+    <Style x:Key="H2TextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSize3Xl}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightSemiBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="LineHeight" Value="36"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    
+    <Style x:Key="H3TextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSize2Xl}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightSemiBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="LineHeight" Value="28"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    
+    <Style x:Key="H4TextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXl}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightSemiBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="LineHeight" Value="24"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    
+    <Style x:Key="BodyTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBase}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightNormal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="LineHeight" Value="24"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    
+    <Style x:Key="SmallTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightNormal}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MutedForegroundBrush}"/>
+        <Setter Property="LineHeight" Value="18"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    
+    <Style x:Key="MutedTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightNormal}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MutedForegroundBrush}"/>
+        <Setter Property="LineHeight" Value="20"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    
+</ResourceDictionary>

@@ -1,0 +1,116 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Spacing System -->
+    
+    <!-- Numeric Values (for Width, Height, Margin individual values) -->
+    <sys:Double x:Key="Space0" xmlns:sys="clr-namespace:System;assembly=mscorlib">0</sys:Double>
+    <sys:Double x:Key="Space1" xmlns:sys="clr-namespace:System;assembly=mscorlib">4</sys:Double>
+    <sys:Double x:Key="Space2" xmlns:sys="clr-namespace:System;assembly=mscorlib">8</sys:Double>
+    <sys:Double x:Key="Space3" xmlns:sys="clr-namespace:System;assembly=mscorlib">12</sys:Double>
+    <sys:Double x:Key="Space4" xmlns:sys="clr-namespace:System;assembly=mscorlib">16</sys:Double>
+    <sys:Double x:Key="Space5" xmlns:sys="clr-namespace:System;assembly=mscorlib">20</sys:Double>
+    <sys:Double x:Key="Space6" xmlns:sys="clr-namespace:System;assembly=mscorlib">24</sys:Double>
+    <sys:Double x:Key="Space8" xmlns:sys="clr-namespace:System;assembly=mscorlib">32</sys:Double>
+    <sys:Double x:Key="Space10" xmlns:sys="clr-namespace:System;assembly=mscorlib">40</sys:Double>
+    <sys:Double x:Key="Space12" xmlns:sys="clr-namespace:System;assembly=mscorlib">48</sys:Double>
+    <sys:Double x:Key="Space16" xmlns:sys="clr-namespace:System;assembly=mscorlib">64</sys:Double>
+    <sys:Double x:Key="Space20" xmlns:sys="clr-namespace:System;assembly=mscorlib">80</sys:Double>
+    <sys:Double x:Key="Space24" xmlns:sys="clr-namespace:System;assembly=mscorlib">96</sys:Double>
+    <sys:Double x:Key="Space32" xmlns:sys="clr-namespace:System;assembly=mscorlib">128</sys:Double>
+    
+    <!-- Size Values for Common UI Elements -->
+    <sys:Double x:Key="Size28" xmlns:sys="clr-namespace:System;assembly=mscorlib">28</sys:Double>
+    <sys:Double x:Key="Size32" xmlns:sys="clr-namespace:System;assembly=mscorlib">32</sys:Double>
+    <sys:Double x:Key="Size36" xmlns:sys="clr-namespace:System;assembly=mscorlib">36</sys:Double>
+    <sys:Double x:Key="Size40" xmlns:sys="clr-namespace:System;assembly=mscorlib">40</sys:Double>
+    <sys:Double x:Key="Size44" xmlns:sys="clr-namespace:System;assembly=mscorlib">44</sys:Double>
+    <sys:Double x:Key="Size48" xmlns:sys="clr-namespace:System;assembly=mscorlib">48</sys:Double>
+    
+    <!-- Margins and Paddings (Thickness) -->
+    <Thickness x:Key="Spacing0">0</Thickness>
+    <Thickness x:Key="Spacing1">4</Thickness>
+    <Thickness x:Key="Spacing2">8</Thickness>
+    <Thickness x:Key="Spacing3">12</Thickness>
+    <Thickness x:Key="Spacing4">16</Thickness>
+    <Thickness x:Key="Spacing5">20</Thickness>
+    <Thickness x:Key="Spacing6">24</Thickness>
+    <Thickness x:Key="Spacing8">32</Thickness>
+    <Thickness x:Key="Spacing10">40</Thickness>
+    <Thickness x:Key="Spacing12">48</Thickness>
+    <Thickness x:Key="Spacing16">64</Thickness>
+    <Thickness x:Key="Spacing20">80</Thickness>
+    <Thickness x:Key="Spacing24">96</Thickness>
+    <Thickness x:Key="Spacing32">128</Thickness>
+    
+    <!-- Border Radii -->
+    <CornerRadius x:Key="RadiusNone">0</CornerRadius>
+    <CornerRadius x:Key="RadiusSm">2</CornerRadius>
+    <CornerRadius x:Key="RadiusBase">4</CornerRadius>
+    <CornerRadius x:Key="RadiusMd">6</CornerRadius>
+    <CornerRadius x:Key="RadiusLg">8</CornerRadius>
+    <CornerRadius x:Key="RadiusXl">12</CornerRadius>
+    <CornerRadius x:Key="Radius2Xl">16</CornerRadius>
+    <CornerRadius x:Key="Radius3Xl">24</CornerRadius>
+    <CornerRadius x:Key="RadiusFull">9999</CornerRadius>
+    
+    <!-- Shadow Definitions -->
+    <DropShadowEffect x:Key="ShadowSm" 
+                      Color="Black" 
+                      BlurRadius="8" 
+                      ShadowDepth="2" 
+                      Direction="270"
+                      Opacity="0.1"/>
+    
+    <DropShadowEffect x:Key="ShadowBase" 
+                      Color="Black" 
+                      BlurRadius="12" 
+                      ShadowDepth="4" 
+                      Direction="270"
+                      Opacity="0.15"/>
+    
+    <DropShadowEffect x:Key="ShadowMd" 
+                      Color="Black" 
+                      BlurRadius="16" 
+                      ShadowDepth="6" 
+                      Direction="270"
+                      Opacity="0.2"/>
+    
+    <DropShadowEffect x:Key="ShadowLg" 
+                      Color="Black" 
+                      BlurRadius="20" 
+                      ShadowDepth="8" 
+                      Direction="270"
+                      Opacity="0.3"/>
+    
+    <DropShadowEffect x:Key="ShadowXl" 
+                      Color="#00000025" 
+                      BlurRadius="20" 
+                      ShadowDepth="25" 
+                      Direction="270"/>
+    
+    <DropShadowEffect x:Key="Shadow2Xl" 
+                      Color="#00000025" 
+                      BlurRadius="40" 
+                      ShadowDepth="50" 
+                      Direction="270"/>
+    
+    <!-- Animation Durations -->
+    <Duration x:Key="AnimationFast">0:0:0.15</Duration>
+    <Duration x:Key="AnimationNormal">0:0:0.2</Duration>
+    <Duration x:Key="AnimationSlow">0:0:0.3</Duration>
+    
+    <!-- Common Easing Functions -->
+    <CubicEase x:Key="EaseOut" EasingMode="EaseOut"/>
+    <CubicEase x:Key="EaseIn" EasingMode="EaseIn"/>
+    <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut"/>
+    
+    <!-- Shadow Effects -->
+    <DropShadowEffect x:Key="DropShadowEffect" 
+                      Color="#40000000" 
+                      BlurRadius="8" 
+                      ShadowDepth="2" 
+                      Direction="270" 
+                      Opacity="0.25"/>
+    
+</ResourceDictionary>

@@ -1,0 +1,180 @@
+<Page x:Class="Shadcn.Wpf.Pages.ProgressPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+      Title="Progress">
+
+    <Page.Resources>
+        <Style x:Key="SectionStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+        <StackPanel>
+            <controls:ShadcnTextBlock Text="Progress Components" TextSize="Heading1" Margin="0,0,0,8"/>
+            <controls:ShadcnTextBlock Text="Progress indicators with different styles and configurations" Variant="Secondary" Margin="0,0,0,20"/>
+            
+            <!-- Basic Progress Bars -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Basic Progress Bars" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Simple progress bars with different values" Margin="0,0,0,16"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <controls:ShadcnTextBlock Text="Basic Progress (25%)" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar Value="25" Margin="0,0,0,16"/>
+                            
+                            <controls:ShadcnTextBlock Text="Progress with Label" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar Value="50" Label="Downloading..." Margin="0,0,0,16"/>
+                            
+                            <controls:ShadcnTextBlock Text="Progress with Percentage" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar Value="75" ShowPercentage="True" Margin="0,0,0,16"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2">
+                            <controls:ShadcnTextBlock Text="Complete Progress (100%)" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar Value="100" Margin="0,0,0,16"/>
+                            
+                            <controls:ShadcnTextBlock Text="Progress with Label and Percentage" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar Value="60" Label="Processing..." ShowPercentage="True" Margin="0,0,0,16"/>
+                            
+                            <controls:ShadcnTextBlock Text="Indeterminate Progress" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar IsIndeterminate="True" Label="Loading..."/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            
+            <!-- Progress Bar Sizes -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Progress Bar Sizes" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Different progress bar sizes" Margin="0,0,0,16"/>
+                    
+                    <StackPanel>
+                        <controls:ShadcnTextBlock Text="Small Progress Bar" TextSize="Small" Margin="0,0,0,8"/>
+                        <controls:ShadcnProgressBar Value="45" Size="Small" Label="Small" ShowPercentage="True" Margin="0,0,0,16"/>
+                        
+                        <controls:ShadcnTextBlock Text="Default Progress Bar" TextSize="Small" Margin="0,0,0,8"/>
+                        <controls:ShadcnProgressBar Value="65" Size="Default" Label="Default" ShowPercentage="True" Margin="0,0,0,16"/>
+                        
+                        <controls:ShadcnTextBlock Text="Large Progress Bar" TextSize="Small" Margin="0,0,0,8"/>
+                        <controls:ShadcnProgressBar Value="85" Size="Large" Label="Large" ShowPercentage="True"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            
+            <!-- Progress Bar Variants -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Progress Bar Variants" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Different color variants for different states" Margin="0,0,0,16"/>
+                    
+                    <UniformGrid Columns="2">
+                        <StackPanel Margin="0,0,8,0">
+                            <controls:ShadcnTextBlock Text="Default" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="50" Variant="Default" ShowPercentage="True" Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Primary" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="60" Variant="Primary" ShowPercentage="True" Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Secondary" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="45" Variant="Secondary" ShowPercentage="True" Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Success" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="90" Variant="Success" ShowPercentage="True"/>
+                        </StackPanel>
+                        
+                        <StackPanel Margin="8,0,0,0">
+                            <controls:ShadcnTextBlock Text="Warning" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="35" Variant="Warning" ShowPercentage="True" Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Destructive" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="25" Variant="Destructive" ShowPercentage="True" Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Accent" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="70" Variant="Accent" ShowPercentage="True" Margin="0,0,0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Disabled" TextSize="Small" Margin="0,0,0,4"/>
+                            <controls:ShadcnProgressBar Value="40" IsEnabled="False" ShowPercentage="True"/>
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+            
+            <!-- Circular Progress -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Circular Progress" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Circular progress indicators (Coming Soon)" Margin="0,0,0,16"/>
+                    
+                    <controls:ShadcnTextBlock Text="Note: Circular progress bars require additional implementation for proper arc drawing." 
+                                            Variant="Secondary" 
+                                            TextSize="Small"/>
+                </StackPanel>
+            </Border>
+            
+            <!-- Interactive Examples -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Interactive Examples" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Control progress bars with buttons" Margin="0,0,0,16"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <controls:ShadcnTextBlock Text="Interactive Progress" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar x:Name="InteractiveProgress" 
+                                                      Value="{Binding InteractiveProgressValue}" 
+                                                      Label="Task Progress" 
+                                                      ShowPercentage="True"
+                                                      Variant="Primary"
+                                                      Margin="0,0,0,16"/>
+                            
+                            <controls:ShadcnTextBlock Text="Simulated Download" TextSize="Small" Margin="0,0,0,8"/>
+                            <controls:ShadcnProgressBar x:Name="DownloadProgress" 
+                                                      Value="{Binding DownloadProgressValue}" 
+                                                      Label="Download.zip" 
+                                                      ShowPercentage="True"
+                                                      Variant="Accent"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <controls:ShadcnButton Content="Add 10%" 
+                                                 Command="{Binding AddProgressCommand}" 
+                                                 Size="Small" 
+                                                 Margin="0,0,0,8"/>
+                            <controls:ShadcnButton Content="Reset" 
+                                                 Command="{Binding ResetInteractiveProgressCommand}" 
+                                                 Variant="Outline" 
+                                                 Size="Small" 
+                                                 Margin="0,0,0,16"/>
+                            <controls:ShadcnButton Content="Start Download" 
+                                                 Command="{Binding StartDownloadCommand}" 
+                                                 Variant="Primary" 
+                                                 Size="Small"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

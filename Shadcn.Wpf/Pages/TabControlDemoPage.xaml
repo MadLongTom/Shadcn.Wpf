@@ -1,0 +1,207 @@
+﻿<Page x:Class="Shadcn.Wpf.Pages.TabControlDemoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+      Title="TabControl Demo">
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+        <StackPanel>
+            
+            <!-- Page Header -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnTextBlock Text="TabControl" TextSize="Heading1" Margin="0,0,0,8"/>
+                <controls:ShadcnTextBlock Text="A set of layered sections of content—known as tab panels—that are displayed one at a time." 
+                          Variant="Secondary"/>
+            </StackPanel>
+
+            <!-- Default TabControl -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnCard Header="Default (with smooth animation)" 
+                                   Style="{StaticResource ShadcnCardWithHeaderTemplate}">
+                    <StackPanel>
+                        <controls:ShadcnTextBlock Text="Features fade-in/fade-out transitions when switching between tabs" 
+                                  Variant="Secondary" 
+                                  Margin="0,0,0,16"/>
+                        <controls:ShadcnTabControl EnableAnimation="True">
+                        <controls:ShadcnTabItem Header="Account">
+                            <StackPanel Margin="16">
+                                <controls:ShadcnTextBlock Text="Account Settings" 
+                                          TextSize="Heading4" 
+                                          Margin="0,0,0,8"/>
+                                <controls:ShadcnTextBlock Text="Make changes to your account here. Click save when you're done." 
+                                          Variant="Secondary" 
+                                          Margin="0,0,0,16"/>
+                                <controls:ShadcnTextBox Placeholder="Name" Margin="0,0,0,12"/>
+                                <controls:ShadcnTextBox Placeholder="Username" Margin="0,0,0,16"/>
+                                <controls:ShadcnButton Content="Save changes" Size="Small"/>
+                            </StackPanel>
+                        </controls:ShadcnTabItem>
+                        
+                        <controls:ShadcnTabItem Header="Password">
+                            <StackPanel Margin="16">
+                                <controls:ShadcnTextBlock Text="Password" 
+                                          TextSize="Heading4" 
+                                          Margin="0,0,0,8"/>
+                                <controls:ShadcnTextBlock Text="Change your password here. After saving, you'll be logged out." 
+                                          Variant="Secondary" 
+                                          Margin="0,0,0,16"/>
+                                <controls:ShadcnPasswordBox Placeholder="Current password" Margin="0,0,0,12"/>
+                                <controls:ShadcnPasswordBox Placeholder="New password" Margin="0,0,0,16"/>
+                                <controls:ShadcnButton Content="Save password" Size="Small"/>
+                            </StackPanel>
+                        </controls:ShadcnTabItem>
+                    </controls:ShadcnTabControl>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+
+            <!-- Pills Variant -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnCard Header="Pills" 
+                                   Style="{StaticResource ShadcnCardWithHeaderTemplate}">
+                    <controls:ShadcnTabControl Variant="Pills" EnableAnimation="True">
+                        <controls:ShadcnTabItem Header="General">
+                            <StackPanel Margin="16">
+                                <controls:ShadcnTextBlock Text="General Settings" 
+                                          TextSize="Heading4" 
+                                          Margin="0,0,0,8"/>
+                                <controls:ShadcnTextBlock Text="Configure your general preferences." 
+                                          Variant="Secondary" 
+                                          Margin="0,0,0,16"/>
+                                <controls:ShadcnCheckBox Content="Enable notifications" Margin="0,0,0,8"/>
+                                <controls:ShadcnCheckBox Content="Auto-save changes" Margin="0,0,0,8"/>
+                                <controls:ShadcnCheckBox Content="Dark mode" Margin="0,0,0,16"/>
+                                <controls:ShadcnButton Content="Apply settings" Variant="Secondary" Size="Small"/>
+                            </StackPanel>
+                        </controls:ShadcnTabItem>
+                        
+                        <controls:ShadcnTabItem Header="Advanced">
+                            <StackPanel Margin="16">
+                                <controls:ShadcnTextBlock Text="Advanced Settings" 
+                                          TextSize="Heading4" 
+                                          Margin="0,0,0,8"/>
+                                <controls:ShadcnTextBlock Text="Configure advanced options for power users." 
+                                          Variant="Secondary" 
+                                          Margin="0,0,0,16"/>
+                                <controls:ShadcnSelect Placeholder="Select theme" Margin="0,0,0,12"/>
+                                <controls:ShadcnSelect Placeholder="Select language" Margin="0,0,0,16"/>
+                                <controls:ShadcnButton Content="Reset to defaults" Variant="Outline" Size="Small"/>
+                            </StackPanel>
+                        </controls:ShadcnTabItem>
+                        
+                        <controls:ShadcnTabItem Header="Help" IsEnabled="False">
+                            <StackPanel Margin="16">
+                                <controls:ShadcnTextBlock Text="Help &amp; Support" TextSize="Heading4"/>
+                                <controls:ShadcnTextBlock Text="This tab is disabled." 
+                                          Variant="Secondary"/>
+                            </StackPanel>
+                        </controls:ShadcnTabItem>
+                    </controls:ShadcnTabControl>
+                </controls:ShadcnCard>
+            </StackPanel>
+
+            <!-- Closeable Tabs -->
+            <StackPanel Margin="0,0,0,32">
+                <controls:ShadcnCard Header="Closeable Tabs" 
+                                   Style="{StaticResource ShadcnCardWithHeaderTemplate}">
+                    <StackPanel>
+                        <!-- Control Buttons -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <controls:ShadcnButton x:Name="AddTabButton" 
+                                                  Content="Add Tab" 
+                                                  Size="Small" 
+                                                  Variant="Outline" 
+                                                  Margin="0,0,8,0"
+                                                  Tag="{Binding ElementName=CloseableTabControl}"
+                                                  Click="AddTab_Click"/>
+                            <controls:ShadcnButton x:Name="RemoveTabButton" 
+                                                  Content="Remove Tab" 
+                                                  Size="Small" 
+                                                  Variant="Outline"
+                                                  Tag="{Binding ElementName=CloseableTabControl}"
+                                                  Click="RemoveTab_Click"/>
+                        </StackPanel>
+                        
+                        <!-- Closeable TabControl -->
+                        <controls:ShadcnTabControl x:Name="CloseableTabControl" EnableAnimation="True">
+                            <controls:ShadcnTabItem Header="Document 1" IsCloseable="True" CloseTab="OnCloseTab">
+                                <StackPanel Margin="16">
+                                    <controls:ShadcnTextBlock Text="Document 1" 
+                                              TextSize="Heading4" 
+                                              Margin="0,0,0,8"/>
+                                    <controls:ShadcnTextBlock Text="This is the content of Document 1. You can close this tab by clicking the × button." 
+                                              Variant="Secondary"/>
+                                </StackPanel>
+                            </controls:ShadcnTabItem>
+                            
+                            <controls:ShadcnTabItem Header="Document 2" IsCloseable="True" CloseTab="OnCloseTab">
+                                <StackPanel Margin="16">
+                                    <controls:ShadcnTextBlock Text="Document 2" 
+                                              TextSize="Heading4" 
+                                              Margin="0,0,0,8"/>
+                                    <controls:ShadcnTextBlock Text="This is the content of Document 2. You can close this tab by clicking the × button." 
+                                              Variant="Secondary"/>
+                                </StackPanel>
+                            </controls:ShadcnTabItem>
+                            
+                            <controls:ShadcnTabItem Header="Document 3" IsCloseable="True" CloseTab="OnCloseTab">
+                                <StackPanel Margin="16">
+                                    <controls:ShadcnTextBlock Text="Document 3" 
+                                              TextSize="Heading4" 
+                                              Margin="0,0,0,8"/>
+                                    <controls:ShadcnTextBlock Text="This is the content of Document 3. You can close this tab by clicking the × button." 
+                                              Variant="Secondary"/>
+                                </StackPanel>
+                            </controls:ShadcnTabItem>
+                        </controls:ShadcnTabControl>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+
+            <!-- Different Sizes -->
+            <StackPanel>
+                <controls:ShadcnCard Header="Sizes" 
+                                   Style="{StaticResource ShadcnCardWithHeaderTemplate}"
+                                   Margin="0,0,0,24">
+                    <StackPanel>
+                        <!-- Small Size -->
+                        <StackPanel Margin="0,0,0,24">
+                            <controls:ShadcnTextBlock Text="Small" TextSize="Heading4" Margin="0,0,0,8"/>
+                            <controls:ShadcnCard Padding="24">
+                                <controls:ShadcnTabControl Size="Small" EnableAnimation="True">
+                            <controls:ShadcnTabItem Header="Tab 1">
+                                <controls:ShadcnTextBlock Text="Small size tab content" 
+                                          Margin="16"/>
+                            </controls:ShadcnTabItem>
+                            <controls:ShadcnTabItem Header="Tab 2">
+                                <controls:ShadcnTextBlock Text="Another small tab" 
+                                          Margin="16"/>
+                            </controls:ShadcnTabItem>
+                            </controls:ShadcnTabControl>
+                        </controls:ShadcnCard>
+                    </StackPanel>
+                    
+                    <!-- Large Size -->
+                    <StackPanel>
+                        <controls:ShadcnTextBlock Text="Large" TextSize="Heading4" Margin="0,0,0,8"/>
+                        <controls:ShadcnCard Padding="24">
+                            <controls:ShadcnTabControl Size="Large" EnableAnimation="True">
+                            <controls:ShadcnTabItem Header="Tab 1">
+                                <controls:ShadcnTextBlock Text="Large size tab content" 
+                                          Margin="16"/>
+                            </controls:ShadcnTabItem>
+                            <controls:ShadcnTabItem Header="Tab 2">
+                                <controls:ShadcnTextBlock Text="Another large tab" 
+                                          Margin="16"/>
+                            </controls:ShadcnTabItem>
+                            </controls:ShadcnTabControl>
+                        </controls:ShadcnCard>
+                    </StackPanel>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+    
+</Page>

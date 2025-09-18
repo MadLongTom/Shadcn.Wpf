@@ -1,0 +1,104 @@
+<Page x:Class="Shadcn.Wpf.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+      Title="Home">
+
+    <Page.Resources>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="32">
+        <StackPanel MaxWidth="800">
+            <!-- Welcome Section -->
+            <controls:ShadcnTextBlock Text="Welcome to Shadcn.Wpf" 
+                                    TextSize="Heading1"
+                                    IsEmphasized="True"/>
+            <controls:ShadcnTextBlock Text="A modern component library for WPF applications" 
+                                    TextSize="Large"
+                                    Variant="Secondary"
+                                    Margin="0,8,0,0"/>
+            
+            <!-- Overview Card -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,32,0,16">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="🎨 Modern Design System" 
+                                            TextSize="Heading4"
+                                            IsEmphasized="True"/>
+                    <controls:ShadcnTextBlock Text="Experience beautiful, accessible components built with modern design principles. Shadcn.Wpf brings the elegant Shadcn design system to WPF applications."
+                                            TextWrapping="Wrap"
+                                            Margin="0,8,0,0"/>
+                </StackPanel>
+            </Border>
+            
+            <!-- Features Grid -->
+            <UniformGrid Columns="2" Rows="2">
+                <Border Style="{StaticResource CardStyle}" Margin="0,0,8,8">
+                    <StackPanel>
+                        <controls:ShadcnTextBlock Text="🧩 Rich Components" 
+                                               TextSize="Heading4"
+                                               IsEmphasized="True"/>
+                        <controls:ShadcnTextBlock Text="A comprehensive library of components including buttons, cards, forms, navigation, and more."
+                                                TextWrapping="Wrap"
+                                                Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+                <Border Style="{StaticResource CardStyle}" Margin="8,0,0,8">
+                    <StackPanel>
+                        <controls:ShadcnTextBlock Text="🌙 Theme Support" 
+                                               TextSize="Heading4"
+                                               IsEmphasized="True"/>
+                        <controls:ShadcnTextBlock Text="Built-in dark and light themes with easy customization and dynamic theme switching."
+                                                TextWrapping="Wrap"
+                                                Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+                <Border Style="{StaticResource CardStyle}" Margin="0,8,8,0">
+                    <StackPanel>
+                        <controls:ShadcnTextBlock Text="⚡ Performance" 
+                                               TextSize="Heading4"
+                                               IsEmphasized="True"/>
+                        <controls:ShadcnTextBlock Text="Optimized for performance with minimal overhead and smooth animations."
+                                                TextWrapping="Wrap"
+                                                Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+                <Border Style="{StaticResource CardStyle}" Margin="8,8,0,0">
+                    <StackPanel>
+                        <controls:ShadcnTextBlock Text="🔧 Easy Integration" 
+                                               TextSize="Heading4"
+                                               IsEmphasized="True"/>
+                        <controls:ShadcnTextBlock Text="Simple installation and seamless integration with existing WPF applications."
+                                                TextWrapping="Wrap"
+                                                Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+            
+            <!-- Getting Started -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,16,0,0">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="🚀 Getting Started" 
+                                            TextSize="Heading4"
+                                            IsEmphasized="True"/>
+                    <controls:ShadcnTextBlock Text="Explore the component library using the navigation menu. Check out buttons, cards, forms, and more!"
+                                            TextWrapping="Wrap"
+                                            Margin="0,8,0,16"/>
+                    <controls:ShadcnButton Content="Explore Components" 
+                                         Variant="Default" 
+                                         Size="Default"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,308 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:Shadcn.Wpf.Controls">
+
+    <!-- Define local resources -->
+    <CornerRadius x:Key="SelectRadiusMd">6</CornerRadius>
+    
+    <!-- Fallback colors -->
+    <SolidColorBrush x:Key="FallbackSelectBackgroundBrush">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectForegroundBrush">#020817</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectBorderBrush">#E2E8F0</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectFocusBorderBrush">#3B82F6</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectHoverBorderBrush">#CBD5E1</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectPlaceholderBrush">#64748B</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectItemHoverBrush">#F1F5F9</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectItemSelectedBrush">#EFF6FF</SolidColorBrush>
+    <SolidColorBrush x:Key="FallbackSelectItemSelectedForegroundBrush">#1E40AF</SolidColorBrush>
+
+    <!-- Select Item Template -->
+    <ControlTemplate x:Key="ShadcnSelectItemTemplate" TargetType="{x:Type controls:ShadcnSelectItem}">
+        <Border x:Name="PART_Border"
+                Background="Transparent"
+                Padding="12,8"
+                Cursor="Hand">
+            <Border.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Border.RenderTransform>
+            <Border.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5"/>
+            </Border.RenderTransformOrigin>
+            <ContentPresenter x:Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            TextElement.Foreground="{TemplateBinding Foreground}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <!-- Hover Animation -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="PART_Border" Property="Background" 
+                        Value="{DynamicResource SelectItemHoverBrush}"/>
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_Border"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                           To="1.02"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="PART_Border"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                           To="1.02"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_Border"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                           To="1"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="PART_Border"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                           To="1"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            
+            <!-- Selected State -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter TargetName="PART_Border" Property="Background" 
+                        Value="{DynamicResource SelectItemSelectedBrush}"/>
+                <Setter TargetName="PART_ContentPresenter" Property="TextElement.FontWeight" Value="SemiBold"/>
+                <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" 
+                        Value="White"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Select Control Template -->
+    <ControlTemplate x:Key="ShadcnSelectTemplate" TargetType="{x:Type controls:ShadcnSelect}">
+        <Grid>
+            <Grid.RenderTransform>
+                <ScaleTransform x:Name="PART_MainTransform" ScaleX="1" ScaleY="1" CenterX="0.5" CenterY="0.5"/>
+            </Grid.RenderTransform>
+            <Grid.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5"/>
+            </Grid.RenderTransformOrigin>
+            
+            <!-- Main Toggle Button -->
+            <ToggleButton x:Name="PART_ToggleButton"
+                          Background="{DynamicResource SelectBackgroundBrush}"
+                          BorderBrush="{DynamicResource SelectBorderBrush}"
+                          BorderThickness="1"
+                          Padding="12,8"
+                          MinHeight="36"
+                          IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                          IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}"
+                          Focusable="True">
+                <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="PART_Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{StaticResource SelectRadiusMd}"
+                                Padding="{TemplateBinding Padding}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- Content Area -->
+                                <ContentPresenter x:Name="PART_ContentPresenter"
+                                                Grid.Column="0"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                RecognizesAccessKey="False"
+                                                TextElement.Foreground="{DynamicResource SelectForegroundBrush}"
+                                                Visibility="Visible"/>                                
+                                
+                                <!-- Placeholder Text -->
+                                <TextBlock x:Name="PART_Placeholder"
+                                         Grid.Column="0"
+                                         Text="{Binding Placeholder, RelativeSource={RelativeSource AncestorType=controls:ShadcnSelect}}"
+                                         Foreground="{DynamicResource SelectPlaceholderBrush}"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Left"
+                                         IsHitTestVisible="False"
+                                         Visibility="Collapsed"/>
+                                
+                                <!-- Dropdown Arrow -->
+                                <Path x:Name="PART_Arrow"
+                                      Grid.Column="1"
+                                      Data="M 0 0 L 4 4 L 8 0 Z"
+                                      Fill="{DynamicResource SelectForegroundBrush}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"
+                                      Margin="8,0,0,0">
+                                    <Path.RenderTransform>
+                                        <RotateTransform x:Name="PART_ArrowRotation" Angle="0" CenterX="4" CenterY="2"/>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Show placeholder when no item is selected -->
+                            <DataTrigger Binding="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=controls:ShadcnSelect}}" Value="{x:Null}">
+                                <Setter TargetName="PART_Placeholder" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="PART_ContentPresenter" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                            
+                            <!-- Hover effects -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PART_Border" Property="BorderBrush" 
+                                        Value="{DynamicResource SelectHoverBorderBrush}"/>
+                            </Trigger>
+                            
+                            <!-- Focus effects -->
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="PART_Border" Property="BorderBrush" 
+                                        Value="{DynamicResource SelectFocusBorderBrush}"/>
+                            </Trigger>
+                            
+                            <!-- Dropdown open state -->
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="PART_Border" Property="BorderBrush" 
+                                        Value="{DynamicResource SelectFocusBorderBrush}"/>
+                            </Trigger>
+                            <!-- Selected item foreground (when there is a selection) -->
+                            <DataTrigger Binding="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=controls:ShadcnSelect}}" Value="{x:Null}">
+                                <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource SelectForegroundBrush}"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            
+            <!-- Dropdown Popup -->
+            <Popup x:Name="PART_Popup"
+                   PlacementTarget="{Binding ElementName=PART_ToggleButton}"
+                   Placement="Bottom"
+                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                   StaysOpen="False"
+                   AllowsTransparency="True"
+                   PopupAnimation="Fade"
+                   Focusable="False">
+                <Border x:Name="PART_PopupBorder"
+                        Background="{DynamicResource SelectBackgroundBrush}"
+                        BorderBrush="{DynamicResource SelectBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SelectRadiusMd}"
+                        MinWidth="{Binding ActualWidth, ElementName=PART_ToggleButton}"
+                        MaxHeight="{Binding MaxDropDownHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                        Effect="{DynamicResource DropShadowEffect}">
+                    
+                    <ScrollViewer x:Name="PART_ScrollViewer"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  Margin="2">
+                        <ItemsPresenter x:Name="PART_ItemsPresenter"/>
+                    </ScrollViewer>
+                </Border>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <!-- Focus Animation -->
+            <Trigger Property="IsFocused" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_MainTransform"
+                                           Storyboard.TargetProperty="ScaleX"
+                                           To="1.02"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="PART_MainTransform"
+                                           Storyboard.TargetProperty="ScaleY"
+                                           To="1.02"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_MainTransform"
+                                           Storyboard.TargetProperty="ScaleX"
+                                           To="1"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="PART_MainTransform"
+                                           Storyboard.TargetProperty="ScaleY"
+                                           To="1"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuadraticEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Default Select Item Style -->
+    <Style TargetType="{x:Type controls:ShadcnSelectItem}">
+        <Setter Property="Template" Value="{StaticResource ShadcnSelectItemTemplate}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SelectForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource SelectItemSelectedForegroundBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Default Select Style -->
+    <Style TargetType="{x:Type controls:ShadcnSelect}">
+        <Setter Property="Template" Value="{StaticResource ShadcnSelectTemplate}"/>
+        <Setter Property="Background" Value="{DynamicResource SelectBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SelectForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SelectBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="MinHeight" Value="36"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="MaxDropDownHeight" Value="200"/>
+    </Style>
+
+</ResourceDictionary>

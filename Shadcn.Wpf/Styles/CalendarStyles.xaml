@@ -1,0 +1,265 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Shadcn.Wpf.Controls">
+
+    <!-- Merge Typography resources -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Typography.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Navigation Arrow Icons -->
+    <Geometry x:Key="ChevronLeftIcon">M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z</Geometry>
+    <Geometry x:Key="ChevronRightIcon">M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z</Geometry>
+
+    <!-- Calendar Day Button Style -->
+    <Style x:Key="CalendarDayButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightNormal}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4"
+                            SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                            <Setter TargetName="Border" Property="Opacity" Value="0.9"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource MutedForegroundBrush}"/>
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Navigation Button Style -->
+    <Style x:Key="CalendarNavButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            CornerRadius="4"
+                            SnapsToDevicePixels="true">
+                        <Path x:Name="Icon"
+                              Data="{TemplateBinding Tag}"
+                              Fill="{DynamicResource ForegroundBrush}"
+                              Stretch="Uniform"
+                              Width="16"
+                              Height="16"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource MutedBrush}"/>
+                            <Setter TargetName="Icon" Property="Fill" Value="{DynamicResource ForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                            <Setter TargetName="Icon" Property="Fill" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default Style for ShadcnCalendar -->
+    <Style TargetType="{x:Type controls:ShadcnCalendar}">
+        <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Opacity="0.1" BlurRadius="8" ShadowDepth="2"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ShadcnCalendar}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8"
+                            Padding="{TemplateBinding Padding}"
+                            Effect="{TemplateBinding Effect}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Header with Month/Year and Navigation -->
+                            <Grid Grid.Row="0" Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0"
+                                        Style="{StaticResource CalendarNavButtonStyle}"
+                                        Command="{Binding PreviousMonthCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Tag="{StaticResource ChevronLeftIcon}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="{TemplateBinding DisplayMonth}"
+                                           FontFamily="{StaticResource DefaultFontFamily}"
+                                           FontSize="{StaticResource FontSizeBase}"
+                                           FontWeight="{StaticResource FontWeightSemiBold}"
+                                           Foreground="{DynamicResource ForegroundBrush}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                <Button Grid.Column="2"
+                                        Style="{StaticResource CalendarNavButtonStyle}"
+                                        Command="{Binding NextMonthCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Tag="{StaticResource ChevronRightIcon}"/>
+                            </Grid>
+
+                            <!-- Day Headers -->
+                            <Grid Grid.Row="1" Margin="0,0,0,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" x:Name="WeekNumberColumn"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" x:Name="WeekHeader" Text="Wk" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center" Width="24" Visibility="Collapsed"/>
+                                <TextBlock Grid.Column="1" Text="Sun" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="Mon" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="3" Text="Tue" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="4" Text="Wed" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="5" Text="Thu" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="6" Text="Fri" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="7" Text="Sat" FontSize="{StaticResource FontSizeXs}" 
+                                           Foreground="{DynamicResource MutedForegroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <!-- Separator -->
+                            <Border Grid.Row="2" Height="1" Background="{DynamicResource BorderBrush}" Margin="0,0,0,8"/>
+
+                            <!-- Calendar Grid -->
+                            <ItemsControl Grid.Row="3" ItemsSource="{TemplateBinding CalendarDays}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="7" x:Name="CalendarGrid"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- Day Button -->
+                                        <Button x:Name="DayButton"
+                                                Style="{StaticResource CalendarDayButtonStyle}"
+                                                Content="{Binding Day}"
+                                                Command="{Binding SelectDateCommand, RelativeSource={RelativeSource AncestorType=controls:ShadcnCalendar}}"
+                                                CommandParameter="{Binding}"/>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding IsCurrentMonth}" Value="False">
+                                                <Setter TargetName="DayButton" Property="Foreground" Value="{DynamicResource MutedForegroundBrush}"/>
+                                                <Setter TargetName="DayButton" Property="Opacity" Value="0.5"/>
+                                            </DataTrigger>
+
+                                            <!-- Today -->
+                                            <DataTrigger Binding="{Binding IsToday}" Value="True">
+                                                <Setter TargetName="DayButton" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                                                <Setter TargetName="DayButton" Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                                                <Setter TargetName="DayButton" Property="FontWeight" Value="{StaticResource FontWeightMedium}"/>
+                                            </DataTrigger>
+
+                                            <!-- Selected -->
+                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                <Setter TargetName="DayButton" Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                                <Setter TargetName="DayButton" Property="Foreground" Value="{DynamicResource PrimaryForegroundBrush}"/>
+                                                <Setter TargetName="DayButton" Property="FontWeight" Value="{StaticResource FontWeightMedium}"/>
+                                            </DataTrigger>
+
+                                            <!-- Weekend -->
+                                            <DataTrigger Binding="{Binding IsWeekend}" Value="True">
+                                                <Setter TargetName="DayButton" Property="Foreground" Value="{DynamicResource DestructiveBrush}"/>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- Footer with Today Button -->
+                            <Grid Grid.Row="4" Margin="0,16,0,0">
+                                <Border Height="1" Background="{DynamicResource BorderBrush}" VerticalAlignment="Top" Margin="0,0,0,12"/>
+                                <Button Content="Today"
+                                        Style="{StaticResource CalendarDayButtonStyle}"
+                                        Command="{Binding TodayCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                        HorizontalAlignment="Center"
+                                        Width="Auto"
+                                        Padding="12,6"
+                                        Margin="0,12,0,0"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Show week numbers -->
+                        <Trigger Property="ShowWeekNumbers" Value="True">
+                            <Setter TargetName="WeekHeader" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="ShowWeekNumbers" Value="False">
+                            <Setter TargetName="WeekNumberColumn" Property="Width" Value="0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

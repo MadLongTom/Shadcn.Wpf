@@ -1,0 +1,293 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Shadcn.Wpf.Controls">
+
+    <!-- RadioButton Template -->
+    <ControlTemplate x:Key="ShadcnRadioButtonTemplate" TargetType="{x:Type controls:ShadcnRadioButton}">
+        <StackPanel>
+            <!-- Main RadioButton Content -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- RadioButton Visual -->
+                <Border x:Name="RadioButtonBorder"
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Background="{DynamicResource BackgroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="2"
+                        CornerRadius="8"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"
+                        RenderTransformOrigin="0.5,0.5">
+                    
+                    <Border.RenderTransform>
+                        <ScaleTransform x:Name="BorderScaleTransform" ScaleX="1" ScaleY="1"/>
+                    </Border.RenderTransform>
+                    
+                    <!-- Radio Dot -->
+                    <Ellipse x:Name="RadioDot"
+                             Width="6"
+                             Height="6"
+                             Fill="{DynamicResource PrimaryForegroundBrush}"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Visibility="Collapsed"
+                             RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <ScaleTransform x:Name="DotScaleTransform" ScaleX="0" ScaleY="0"/>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                </Border>
+                
+                <!-- Content -->
+                <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                    <ContentPresenter x:Name="ContentPresenter"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    TextElement.Foreground="{DynamicResource ForegroundBrush}"
+                                    TextElement.FontFamily="{DynamicResource DefaultFontFamily}"
+                                    TextElement.FontSize="14"
+                                    VerticalAlignment="Center"/>
+                    
+                    <!-- Description -->
+                    <TextBlock x:Name="DescriptionText"
+                               Text="{TemplateBinding Description}"
+                               FontFamily="{DynamicResource DefaultFontFamily}"
+                               FontSize="12"
+                               Foreground="{DynamicResource MutedForegroundBrush}"
+                               Margin="0,4,0,0"
+                               TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        
+        <ControlTemplate.Triggers>
+            <!-- When Description is present, align RadioButton to top for better alignment with first line -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Description" Value="{x:Null}"/>
+                </MultiTrigger.Conditions>
+                <!-- No action needed - default center alignment is good for content-only -->
+            </MultiTrigger>
+            
+            <!-- When Description is present and not empty -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition SourceName="DescriptionText" Property="Visibility" Value="Visible"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="RadioButtonBorder" Property="VerticalAlignment" Value="Top"/>
+                <Setter TargetName="RadioButtonBorder" Property="Margin" Value="0,2,0,0"/>
+                <Setter TargetName="ContentPresenter" Property="VerticalAlignment" Value="Top"/>
+            </MultiTrigger>
+            
+            <!-- Size Triggers -->
+            <Trigger Property="Size" Value="Small">
+                <Setter TargetName="RadioButtonBorder" Property="Width" Value="14"/>
+                <Setter TargetName="RadioButtonBorder" Property="Height" Value="14"/>
+                <Setter TargetName="RadioButtonBorder" Property="CornerRadius" Value="7"/>
+                <Setter TargetName="RadioDot" Property="Width" Value="4"/>
+                <Setter TargetName="RadioDot" Property="Height" Value="4"/>
+                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="12"/>
+            </Trigger>
+            <Trigger Property="Size" Value="Large">
+                <Setter TargetName="RadioButtonBorder" Property="Width" Value="20"/>
+                <Setter TargetName="RadioButtonBorder" Property="Height" Value="20"/>
+                <Setter TargetName="RadioButtonBorder" Property="CornerRadius" Value="10"/>
+                <Setter TargetName="RadioDot" Property="Width" Value="8"/>
+                <Setter TargetName="RadioDot" Property="Height" Value="8"/>
+                <Setter TargetName="ContentPresenter" Property="TextElement.FontSize" Value="16"/>
+            </Trigger>
+            
+            <!-- State Triggers -->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="RadioButtonBorder" Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                <Setter TargetName="RadioButtonBorder" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+                <Setter TargetName="RadioDot" Property="Visibility" Value="Visible"/>
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!-- Border scale animation -->
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BorderScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleX">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.95">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BorderScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleY">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.95">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            
+                            <!-- Dot scale animation -->
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DotScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleX">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.2">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DotScaleTransform"
+                                                         Storyboard.TargetProperty="ScaleY">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1.2">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!-- Dot scale out animation -->
+                            <DoubleAnimation Storyboard.TargetName="DotScaleTransform"
+                                           Storyboard.TargetProperty="ScaleX"
+                                           To="0"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseIn"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="DotScaleTransform"
+                                           Storyboard.TargetProperty="ScaleY"
+                                           To="0"
+                                           Duration="0:0:0.15">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseIn"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="RadioButtonBorder" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="BorderScaleTransform"
+                                           Storyboard.TargetProperty="ScaleX"
+                                           To="1.05"
+                                           Duration="0:0:0.1">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="BorderScaleTransform"
+                                           Storyboard.TargetProperty="ScaleY"
+                                           To="1.05"
+                                           Duration="0:0:0.1">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="BorderScaleTransform"
+                                           Storyboard.TargetProperty="ScaleX"
+                                           To="1"
+                                           Duration="0:0:0.1">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="BorderScaleTransform"
+                                           Storyboard.TargetProperty="ScaleY"
+                                           To="1"
+                                           Duration="0:0:0.1">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            
+            <Trigger Property="IsFocused" Value="True">
+                <Setter TargetName="RadioButtonBorder" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            </Trigger>
+            
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="RadioButtonBorder" Property="Opacity" Value="0.5"/>
+                <Setter TargetName="ContentPresenter" Property="Opacity" Value="0.5"/>
+                <Setter TargetName="DescriptionText" Property="Opacity" Value="0.5"/>
+            </Trigger>
+            
+            <Trigger Property="HasError" Value="True">
+                <Setter TargetName="RadioButtonBorder" Property="BorderBrush" Value="{DynamicResource DestructiveBrush}"/>
+                <Setter TargetName="DescriptionText" Property="Foreground" Value="{DynamicResource DestructiveBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Default RadioButton Style -->
+    <Style TargetType="{x:Type controls:ShadcnRadioButton}">
+        <Setter Property="Template" Value="{StaticResource ShadcnRadioButtonTemplate}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    </Style>
+
+</ResourceDictionary>

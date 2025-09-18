@@ -1,0 +1,151 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+                    xmlns:controls="clr-namespace:Shadcn.Wpf.Controls">
+
+    <!-- Scroll Thumb Style -->
+    <Style x:Key="ShadcnScrollThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="ThumbBorder"
+                            Background="{DynamicResource ForegroundBrush}"
+                            CornerRadius="4"
+                            Opacity="0.4">
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ThumbBorder" Property="Background" Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter TargetName="ThumbBorder" Property="Opacity" Value="0.7"/>
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="ThumbBorder" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                            <Setter TargetName="ThumbBorder" Property="Opacity" Value="1.0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Scroll Button Style -->
+    <Style x:Key="ShadcnScrollButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="{TemplateBinding Background}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Vertical ScrollBar Template (simplified) -->
+    <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type controls:ShadcnScrollBar}">
+        <Grid x:Name="Bg" SnapsToDevicePixels="True" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+            <Border Background="{DynamicResource MutedBrush}" CornerRadius="4" Opacity="0.2"/>
+            <Track x:Name="PART_Track" IsDirectionReversed="True" Margin="2" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource ShadcnScrollThumb}"
+                           Width="{Binding ThumbSize, RelativeSource={RelativeSource AncestorType={x:Type controls:ShadcnScrollBar}}}"
+                           MinHeight="20"
+                           shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
+                </Track.Thumb>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- Horizontal ScrollBar Template -->
+    <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type controls:ShadcnScrollBar}">
+        <Grid x:Name="Bg" SnapsToDevicePixels="True" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="0"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MaxWidth="0"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="3" Background="{DynamicResource MutedBrush}" CornerRadius="4" Opacity="0.2"/>
+            <Track x:Name="PART_Track" Grid.Column="1" IsDirectionReversed="True" Margin="2" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource ShadcnScrollThumb}"
+                           Height="{Binding ThumbSize, RelativeSource={RelativeSource AncestorType={x:Type controls:ShadcnScrollBar}}}"
+                           MinWidth="20"
+                           shell:WindowChrome.IsHitTestVisibleInChrome="True"/>
+                </Track.Thumb>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- ShadcnScrollBar Default Style -->
+    <Style TargetType="{x:Type controls:ShadcnScrollBar}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Width" Value="{Binding TrackSize, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="MinWidth" Value="{Binding TrackSize, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto"/>
+                <Setter Property="MinWidth" Value="0"/>
+                <Setter Property="Height" Value="{Binding TrackSize, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="MinHeight" Value="{Binding TrackSize, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Default ScrollViewer style that replaces system default -->
+    <Style TargetType="{x:Type ScrollViewer}">
+        <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="Corner" Grid.Column="1" Grid.Row="1" Fill="{DynamicResource BackgroundBrush}"/>
+                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                                Grid.Column="0"
+                                                Grid.Row="0"
+                                                Margin="{TemplateBinding Padding}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}"
+                                                CanHorizontallyScroll="False"
+                                                CanVerticallyScroll="False"
+                                                Content="{TemplateBinding Content}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        <controls:ShadcnScrollBar x:Name="PART_VerticalScrollBar"
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                Grid.RowSpan="2"
+                                                AutomationProperties.AutomationId="VerticalScrollBar"
+                                                Cursor="Arrow"
+                                                Maximum="{TemplateBinding ScrollableHeight}"
+                                                Minimum="0"
+                                                Orientation="Vertical"
+                                                Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                ViewportSize="{TemplateBinding ViewportHeight}"
+                                                Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        <controls:ShadcnScrollBar x:Name="PART_HorizontalScrollBar"
+                                                Grid.Column="0"
+                                                Grid.Row="1"
+                                                AutomationProperties.AutomationId="HorizontalScrollBar"
+                                                Cursor="Arrow"
+                                                Maximum="{TemplateBinding ScrollableWidth}"
+                                                Minimum="0"
+                                                Orientation="Horizontal"
+                                                Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                ViewportSize="{TemplateBinding ViewportWidth}"
+                                                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

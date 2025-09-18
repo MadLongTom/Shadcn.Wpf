@@ -1,0 +1,356 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+                    xmlns:converters="clr-namespace:Shadcn.Wpf.Converters">
+
+    <!-- Merge Typography resources to make them available in this context -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Typography.xaml"/>
+        <ResourceDictionary Source="CalendarStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Additional resources for calendar popup -->
+    <SolidColorBrush x:Key="ShadcnCardBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="ShadcnBorder" Color="#E4E4E7"/>
+    
+    <DropShadowEffect x:Key="ShadcnDropShadow" 
+                      BlurRadius="10" 
+                      ShadowDepth="2" 
+                      Direction="270" 
+                      Color="#1A000000" 
+                      Opacity="0.1"/>
+
+
+    <!-- Converters -->
+    <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+    <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+
+    <!-- Calendar Icon Geometry -->
+    <Geometry x:Key="CalendarIconGeometry">M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z</Geometry>
+
+    <!-- Clear Icon Geometry -->
+    <Geometry x:Key="ClearIconGeometry">M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z</Geometry>
+
+    <!-- DatePicker Text Box Style -->
+    <Style x:Key="DatePickerTextBoxStyle" TargetType="{x:Type DatePickerTextBox}">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightNormal}"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="IsReadOnly" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Calendar Button Style -->
+    <Style x:Key="CalendarButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="ButtonBorder"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="4"
+                            Padding="6"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Right">
+                        <Path x:Name="CalendarIcon"
+                              Data="{StaticResource CalendarIconGeometry}"
+                              Fill="{DynamicResource MutedForegroundBrush}"
+                              Stretch="Uniform"
+                              Width="16"
+                              Height="16"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource MutedBrush}"/>
+                            <Setter TargetName="CalendarIcon" Property="Fill" Value="{DynamicResource ForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                            <Setter TargetName="CalendarIcon" Property="Fill" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Clear Button Style -->
+    <Style x:Key="ClearButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="ButtonBorder"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="4"
+                            Padding="4"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,4,0">
+                        <Path x:Name="ClearIcon"
+                              Data="{StaticResource ClearIconGeometry}"
+                              Fill="{DynamicResource MutedForegroundBrush}"
+                              Stretch="Uniform"
+                              Width="12"
+                              Height="12"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource DestructiveBrush}"/>
+                            <Setter TargetName="ClearIcon" Property="Fill" Value="{DynamicResource DestructiveForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource DestructiveBrush}"/>
+                            <Setter TargetName="ClearIcon" Property="Fill" Value="{DynamicResource DestructiveForegroundBrush}"/>
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.9"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default Style for ShadcnDatePicker -->
+    <Style TargetType="{x:Type controls:ShadcnDatePicker}">
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="FontWeight" Value="{StaticResource FontWeightNormal}"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Icon" Value="{StaticResource CalendarIconGeometry}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ShadcnDatePicker}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Label -->
+                        <TextBlock x:Name="LabelText"
+                                   Grid.Row="0"
+                                   Text="{TemplateBinding Label}"
+                                   FontFamily="{StaticResource DefaultFontFamily}"
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   FontWeight="{StaticResource FontWeightMedium}"
+                                   Foreground="{DynamicResource ForegroundBrush}"
+                                   Margin="0,0,0,6"
+                                   Visibility="{Binding Label, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}"/>
+
+                        <!-- Main DatePicker Container -->
+                        <Border x:Name="MainBorder"
+                                Grid.Row="1"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Padding="0"
+                                SnapsToDevicePixels="true">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Text Input Area -->
+                                <Border Grid.Column="0" Padding="{TemplateBinding Padding}">
+                                    <Grid>
+                                        <!-- Placeholder Text -->
+                                        <TextBlock x:Name="PlaceholderText"
+                                                   Text="{TemplateBinding Placeholder}"
+                                                   FontFamily="{TemplateBinding FontFamily}"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   FontWeight="{TemplateBinding FontWeight}"
+                                                   Foreground="{DynamicResource MutedForegroundBrush}"
+                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                   IsHitTestVisible="False"
+                                                   Visibility="Collapsed"/>
+
+                                        <!-- DatePicker TextBox -->
+                                        <DatePickerTextBox x:Name="PART_TextBox"
+                                                           Style="{StaticResource DatePickerTextBoxStyle}"
+                                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                           IsReadOnly="{Binding IsTextInputEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InverseBooleanConverter}}"/>
+                                    </Grid>
+                                </Border>
+
+                                <!-- Clear Button -->
+                                <Button x:Name="ClearButton"
+                                        Grid.Column="1"
+                                        Style="{StaticResource ClearButtonStyle}"
+                                        Visibility="Collapsed"/>
+
+                                <!-- Calendar Button -->
+                                <Button x:Name="PART_Button"
+                                        Grid.Column="2"
+                                        Style="{StaticResource CalendarButtonStyle}"
+                                        Focusable="False"/>
+
+                                <!-- Calendar Popup -->
+                                <Popup x:Name="PART_Popup"
+                                       AllowsTransparency="True"
+                                       Placement="Bottom"
+                                       PlacementTarget="{Binding ElementName=MainBorder}"
+                                       StaysOpen="False"
+                                       PopupAnimation="Fade"
+                                       VerticalOffset="2">
+                                    
+                                    <!-- Outer container for shadow -->
+                                    <Grid Margin="8">
+                                        <Border Background="Transparent" 
+                                                CornerRadius="8"
+                                                Effect="{DynamicResource ShadcnDropShadow}"/>
+                                        
+                                        <!-- Inner border for actual visual -->
+                                        <Border Background="{DynamicResource CardBrush}" 
+                                                BorderBrush="{DynamicResource BorderBrush}" 
+                                                BorderThickness="1" 
+                                                CornerRadius="8">
+                                            <controls:ShadcnCalendar x:Name="CustomCalendar"
+                                                                    Margin="0"
+                                                                    SelectedDate="{Binding SelectedDate, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                                    ShowWeekNumbers="{Binding ShowWeekNumbers, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </Border>
+                                    </Grid>
+                                </Popup>
+                            </Grid>
+                        </Border>
+
+                        <!-- Helper/Error Text -->
+                        <TextBlock x:Name="HelperText"
+                                   Grid.Row="2"
+                                   FontFamily="{StaticResource DefaultFontFamily}"
+                                   FontSize="{StaticResource FontSizeXs}"
+                                   FontWeight="{StaticResource FontWeightNormal}"
+                                   Foreground="{DynamicResource MutedForegroundBrush}"
+                                   Margin="0,4,0,0"
+                                   TextWrapping="Wrap"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!-- Placeholder visibility -->
+                        <Trigger Property="SelectedDate" Value="{x:Null}">
+                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <!-- Clear button visibility -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsClearable" Value="True"/>
+                                <Condition Property="SelectedDate" Value="{x:Null}"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="ClearButton" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsClearable" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="ClearButton" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Icon visibility -->
+                        <Trigger Property="ShowIcon" Value="False">
+                            <Setter TargetName="PART_Button" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <!-- Variant Triggers -->
+                        <Trigger Property="Variant" Value="Outline">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Variant" Value="Ghost">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Trigger>
+
+                        <!-- Size Triggers -->
+                        <Trigger Property="Size" Value="Small">
+                            <Setter Property="FontSize" Value="{StaticResource FontSizeXs}"/>
+                            <Setter Property="Padding" Value="8,6"/>
+                        </Trigger>
+                        <Trigger Property="Size" Value="Large">
+                            <Setter Property="FontSize" Value="{StaticResource FontSizeBase}"/>
+                            <Setter Property="Padding" Value="16,12"/>
+                        </Trigger>
+
+                        <!-- State Triggers -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource RingBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource RingBrush}"/>
+                            <Setter TargetName="MainBorder" Property="BorderThickness" Value="2"/>
+                            <Setter TargetName="MainBorder" Property="Margin" Value="-1"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource MutedBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource MutedForegroundBrush}"/>
+                            <Setter TargetName="PlaceholderText" Property="Foreground" Value="{DynamicResource MutedForegroundBrush}"/>
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+
+                        <!-- Error State -->
+                        <Trigger Property="HasError" Value="True">
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource DestructiveBrush}"/>
+                            <Setter TargetName="HelperText" Property="Foreground" Value="{DynamicResource DestructiveBrush}"/>
+                            <Setter TargetName="HelperText" Property="Text" Value="{Binding ErrorMessage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+
+                        <!-- Helper Text -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="HasError" Value="False"/>
+                                <Condition Property="HelperText" Value="{x:Null}"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="HelperText" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="HasError" Value="False"/>
+                                <Condition Property="HelperText" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="HelperText" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <Trigger Property="HasError" Value="False">
+                            <Setter TargetName="HelperText" Property="Text" Value="{Binding HelperText, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

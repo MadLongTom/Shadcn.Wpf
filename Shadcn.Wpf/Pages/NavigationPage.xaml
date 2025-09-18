@@ -1,0 +1,149 @@
+<Page x:Class="Shadcn.Wpf.Pages.NavigationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+      Title="Navigation">
+
+    <Page.Resources>
+        <Style x:Key="HeadingStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+        
+        <Style x:Key="SubHeadingStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+        
+        <Style x:Key="BodyStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+        
+        <Style x:Key="SectionStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+        <StackPanel>
+            <controls:ShadcnTextBlock Text="Navigation Components" TextSize="Heading1" Margin="0,0,0,8"/>
+            <controls:ShadcnTextBlock Text="Navigation menu components with collapsible and hierarchical features" Variant="Secondary" Margin="0,0,0,20"/>
+            
+            <!-- NavMenu Demo -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Navigation Menu" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Interactive navigation menu with collapsible functionality" Variant="Secondary" Margin="0,0,0,12"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- NavMenu Demo -->
+                        <Border Grid.Column="0"
+                                Background="{DynamicResource BackgroundBrush}"
+                                BorderBrush="{DynamicResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Height="400">
+                            <controls:ShadcnNavMenu x:Name="DemoNavMenu"
+                                                  Header="Demo Menu"
+                                                  IsCollapsed="{Binding IsMenuCollapsed}"
+                                                  NavigationItems="{Binding DemoNavigationItems}"
+                                                  NavigationItemSelectedCommand="{Binding DemoNavigationItemSelectedCommand}"/>
+                        </Border>
+                        
+                        <!-- Controls and Status -->
+                        <StackPanel Grid.Column="2">
+                            <controls:ShadcnTextBlock Text="Menu Controls:" TextSize="Heading4" Margin="0,0,0,8"/>
+                            
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <controls:ShadcnButton Content="Toggle Collapse" 
+                                                     Command="{Binding ToggleCollapseCommand}"
+                                                     Margin="0,0,8,0"/>
+                                <controls:ShadcnButton Content="Expand All" 
+                                                     Variant="Outline"
+                                                     Command="{Binding ExpandAllCommand}"
+                                                     Margin="0,0,8,0"/>
+                                <controls:ShadcnButton Content="Collapse All" 
+                                                     Variant="Outline"
+                                                     Command="{Binding CollapseAllCommand}"/>
+                            </StackPanel>
+                            
+                            <controls:ShadcnTextBlock Text="Badge Controls:" TextSize="Heading4" Margin="0,0,0,8"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                <controls:ShadcnButton Content="Add Badges" 
+                                                     Variant="Secondary"
+                                                     Command="{Binding AddBadgesCommand}"
+                                                     Margin="0,0,8,0"/>
+                                <controls:ShadcnButton Content="Clear Badges" 
+                                                     Variant="Secondary"
+                                                     Command="{Binding ClearBadgesCommand}"/>
+                            </StackPanel>
+                            
+                            <Separator Margin="0,12"/>
+                            
+                            <controls:ShadcnTextBlock Text="Status:" TextSize="Heading4" Margin="0,0,0,8"/>
+                            <Border Background="{DynamicResource MutedBrush}" 
+                                    Padding="12" 
+                                    CornerRadius="6"
+                                    Margin="0,0,0,8">
+                                <StackPanel>
+                                    <controls:ShadcnTextBlock Text="{Binding StatusMessage}" Margin="0,0,0,4"/>
+                                    <controls:ShadcnTextBlock Text="{Binding IsMenuCollapsed, StringFormat='Collapsed: {0}'}"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            
+            <!-- Features -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Features" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Key features of the navigation menu component" Variant="Secondary" Margin="0,0,0,12"/>
+                    
+                    <UniformGrid Columns="2" Rows="2">
+                        <StackPanel Margin="0,0,8,8">
+                            <controls:ShadcnTextBlock Text="🔄 Collapsible Design" TextSize="Large" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBlock Text="Menu can be collapsed to save space while maintaining functionality." Variant="Secondary"/>
+                        </StackPanel>
+                        
+                        <StackPanel Margin="8,0,0,8">
+                            <controls:ShadcnTextBlock Text="🌳 Hierarchical Structure" TextSize="Large" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBlock Text="Support for nested navigation items with expand/collapse functionality." Variant="Secondary"/>
+                        </StackPanel>
+                        
+                        <StackPanel Margin="0,8,8,0">
+                            <controls:ShadcnTextBlock Text="🏷️ Badge Support" TextSize="Large" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBlock Text="Display badges for notifications, counts, or status indicators." Variant="Secondary"/>
+                        </StackPanel>
+                        
+                        <StackPanel Margin="8,8,0,0">
+                            <controls:ShadcnTextBlock Text="🎨 Theme Integration" TextSize="Large" Margin="0,0,0,4"/>
+                            <controls:ShadcnTextBlock Text="Fully integrated with the theme system for consistent styling." Variant="Secondary"/>
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

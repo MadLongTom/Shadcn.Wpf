@@ -1,0 +1,188 @@
+<Page x:Class="Shadcn.Wpf.Pages.CardsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+      Title="Cards">
+
+    <Page.Resources>
+        <Style x:Key="SectionStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
+        <StackPanel>
+            <controls:ShadcnTextBlock Text="Card Components" TextSize="Heading1" Margin="0,0,0,8"/>
+            <controls:ShadcnTextBlock Text="Container components with flexible layouts and styling" Variant="Secondary" Margin="0,0,0,20"/>
+            
+            <!-- Basic Cards -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Basic Cards" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Simple card layouts with different content" Margin="0,0,0,12"/>
+                    
+                    <UniformGrid Columns="2" Rows="2">
+                        <controls:ShadcnCard Header="Simple Card" 
+                                           Style="{StaticResource ShadcnCardWithHeaderTemplate}"
+                                           Margin="0,0,8,8">
+                            <controls:ShadcnTextBlock Text="This is a simple card with header and content area. Perfect for displaying information in a clean, organized way."/>
+                        </controls:ShadcnCard>
+                        
+                        <controls:ShadcnCard Header="Card with Actions" 
+                                           Style="{StaticResource ShadcnCardWithHeaderTemplate}"
+                                           Margin="8,0,0,8">
+                            <StackPanel>
+                                <controls:ShadcnTextBlock Text="This card includes action buttons in the content area." Margin="0,0,0,12"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ShadcnButton Content="Action" Size="Small" Margin="0,0,8,0"/>
+                                    <controls:ShadcnButton Content="Cancel" Variant="Outline" Size="Small"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </controls:ShadcnCard>
+                        
+                        <controls:ShadcnCard Header="Feature Card" 
+                                           Style="{StaticResource ShadcnCardWithHeaderTemplate}"
+                                           Margin="0,8,8,0">
+                            <StackPanel>
+                                <controls:ShadcnTextBlock Text="🎨" TextSize="ExtraLarge" Margin="0,0,0,8"/>
+                                <controls:ShadcnTextBlock Text="Beautiful Design" IsEmphasized="True" Margin="0,0,0,4"/>
+                                <controls:ShadcnTextBlock Text="Modern and clean design system with attention to detail."/>
+                            </StackPanel>
+                        </controls:ShadcnCard>
+                        
+                        <controls:ShadcnCard Header="Stats Card" 
+                                           Style="{StaticResource ShadcnCardWithHeaderTemplate}"
+                                           Margin="8,8,0,0">
+                            <StackPanel>
+                                <controls:ShadcnTextBlock Text="1,234" TextSize="ExtraLarge" IsEmphasized="True" Variant="Primary" Margin="0,0,0,4"/>
+                                <controls:ShadcnTextBlock Text="Total Users" TextSize="Small" Variant="Secondary" Margin="0,0,0,4"/>
+                                <controls:ShadcnTextBlock Text="↗ +12% from last month" TextSize="ExtraSmall" Variant="Success"/>
+                            </StackPanel>
+                        </controls:ShadcnCard>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+            
+            <!-- Interactive Cards -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Interactive Cards" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Cards with interactive elements and dynamic content" Margin="0,0,0,12"/>
+                    
+                    <UniformGrid Columns="2">
+                        <controls:ShadcnCard Header="Settings Card" 
+                                           Style="{StaticResource ShadcnCardWithHeaderTemplate}"
+                                           Margin="0,0,8,0">
+                            <StackPanel>
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <controls:ShadcnTextBlock Text="Dark Mode" VerticalAlignment="Center"/>
+                                    <controls:ShadcnCheckBox Grid.Column="1" x:Name="DarkModeToggle" IsChecked="{Binding IsDarkMode}" Command="{Binding ToggleDarkModeCommand}"/>
+                                </Grid>
+                                
+                                <Grid Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <controls:ShadcnTextBlock Text="Notifications" VerticalAlignment="Center"/>
+                                    <controls:ShadcnCheckBox Grid.Column="1" IsChecked="True"/>
+                                </Grid>
+                                
+                                <controls:ShadcnButton Content="Save Settings" Variant="Primary" Size="Small"/>
+                            </StackPanel>
+                        </controls:ShadcnCard>
+                        
+                        <controls:ShadcnCard Header="Progress Card" 
+                                           Style="{StaticResource ShadcnCardWithHeaderTemplate}"
+                                           Margin="8,0,0,0">
+                            <StackPanel>
+                                <controls:ShadcnProgressBar Label="Project Progress" 
+                                                          Value="75" 
+                                                          ShowPercentage="True"
+                                                          Variant="Primary"
+                                                          Margin="0,0,0,12"/>
+                                <controls:ShadcnButton Content="View Details" Variant="Outline" Size="Small"/>
+                            </StackPanel>
+                        </controls:ShadcnCard>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+            
+            <!-- Complex Cards -->
+            <Border Style="{StaticResource SectionStyle}">
+                <StackPanel>
+                    <controls:ShadcnTextBlock Text="Complex Cards" TextSize="Heading3" Margin="0,0,0,8"/>
+                    <controls:ShadcnTextBlock Text="Advanced card layouts with multiple sections" Margin="0,0,0,12"/>
+                    
+                    <controls:ShadcnCard Header="User Profile"
+                                       Style="{StaticResource ShadcnCardWithHeaderTemplate}">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Border Background="{DynamicResource AccentBrush}" 
+                                        Width="48" Height="48" 
+                                        CornerRadius="24"
+                                        Margin="0,0,12,0">
+                                    <controls:ShadcnTextBlock Text="JD" 
+                                               TextColor="White" 
+                                               IsEmphasized="True"
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center"/>
+                                </Border>
+                                
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <controls:ShadcnTextBlock Text="John Doe" IsEmphasized="True" TextSize="Large"/>
+                                    <controls:ShadcnTextBlock Text="Software Developer" TextSize="Small" Variant="Secondary"/>
+                                </StackPanel>
+                                
+                                <controls:ShadcnButton Grid.Column="2" 
+                                                     Content="Edit" 
+                                                     Variant="Outline" 
+                                                     Size="Small"/>
+                            </Grid>
+                            
+                            <Separator Margin="0,0,0,16"/>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                                    <controls:ShadcnTextBlock Text="156" TextSize="Large" IsEmphasized="True" HorizontalAlignment="Center"/>
+                                    <controls:ShadcnTextBlock Text="Projects" TextSize="ExtraSmall" Variant="Secondary" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                    <controls:ShadcnTextBlock Text="2.4k" TextSize="Large" IsEmphasized="True" HorizontalAlignment="Center"/>
+                                    <controls:ShadcnTextBlock Text="Followers" TextSize="ExtraSmall" Variant="Secondary" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                                    <controls:ShadcnTextBlock Text="892" TextSize="Large" IsEmphasized="True" HorizontalAlignment="Center"/>
+                                    <controls:ShadcnTextBlock Text="Following" TextSize="ExtraSmall" Variant="Secondary" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </controls:ShadcnCard>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

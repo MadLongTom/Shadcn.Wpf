@@ -1,0 +1,171 @@
+<controls:ShadcnWindow x:Class="Shadcn.Wpf.TestShadcnWindow"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:controls="clr-namespace:Shadcn.Wpf.Controls"
+                         Title="Shadcn Window 示例"
+                         Width="800"
+                         Height="600"
+                         ShowTitleBar="True"
+                         ShowSystemButtons="True"
+                         ShowIcon="True"
+                         EnableDropShadow="True"
+                         EnableAnimations="True"
+                         TitleBarHeight="48">
+    
+    <!-- Custom Title Bar Content -->
+    <controls:ShadcnWindow.TitleBarContent>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="自定义标题栏内容" 
+                       Foreground="{DynamicResource MutedForegroundBrush}"
+                       FontSize="12"/>
+        </StackPanel>
+    </controls:ShadcnWindow.TitleBarContent>
+    
+    <!-- Window Content -->
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <TextBlock Text="ShadcnWindow 示例"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource ForegroundBrush}"/>
+            <TextBlock Text="基于 Window 和 WindowChrome 的现代化窗口控件"
+                       FontSize="16"
+                       Foreground="{DynamicResource MutedForegroundBrush}"
+                       Margin="0,8,0,0"/>
+        </StackPanel>
+        
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Feature Cards -->
+                <controls:ShadcnCard Padding="20" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="主要特性" 
+                                   FontSize="18" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,12"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                                <TextBlock Text="• 无边框现代化设计" Margin="0,4"/>
+                                <TextBlock Text="• 自定义标题栏支持" Margin="0,4"/>
+                                <TextBlock Text="• 圆角边框和阴影" Margin="0,4"/>
+                                <TextBlock Text="• 完整的系统按钮支持" Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                <TextBlock Text="• 窗口状态自动管理" Margin="0,4"/>
+                                <TextBlock Text="• 可配置的标题栏高度" Margin="0,4"/>
+                                <TextBlock Text="• 支持自定义图标" Margin="0,4"/>
+                                <TextBlock Text="• 响应式布局支持" Margin="0,4"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </controls:ShadcnCard>
+                
+                <!-- Control Buttons -->
+                <controls:ShadcnCard Padding="20" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="窗口控制" 
+                                   FontSize="18" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,12"/>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ShadcnButton Content="新建窗口" 
+                                                   Variant="Primary"
+                                                   Click="OnNewWindowClick"
+                                                   Margin="0,0,12,0"/>
+                            <controls:ShadcnButton Content="切换标题栏" 
+                                                   Variant="Secondary"
+                                                   Click="OnToggleTitleBarClick"
+                                                   Margin="0,0,12,0"/>
+                            <controls:ShadcnButton Content="切换阴影" 
+                                                   Variant="Outline"
+                                                   Click="OnToggleShadowClick"/>
+                        </StackPanel>
+                    </StackPanel>
+                </controls:ShadcnCard>
+                
+                <!-- Properties Demo -->
+                <controls:ShadcnCard Padding="20" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="属性配置" 
+                                   FontSize="18" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,12"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                                <controls:ShadcnCheckBox x:Name="ShowTitleBarCheckBox"
+                                                         Content="显示标题栏"
+                                                         IsChecked="True"
+                                                         Checked="OnShowTitleBarChanged"
+                                                         Unchecked="OnShowTitleBarChanged"
+                                                         Margin="0,0,0,8"/>
+                                
+                                <controls:ShadcnCheckBox x:Name="ShowSystemButtonsCheckBox"
+                                                         Content="显示系统按钮"
+                                                         IsChecked="True"
+                                                         Checked="OnShowSystemButtonsChanged"
+                                                         Unchecked="OnShowSystemButtonsChanged"/>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                <controls:ShadcnCheckBox x:Name="ShowIconCheckBox"
+                                                         Content="显示图标"
+                                                         IsChecked="True"
+                                                         Checked="OnShowIconChanged"
+                                                         Unchecked="OnShowIconChanged"
+                                                         Margin="0,0,0,8"/>
+                                
+                                <controls:ShadcnCheckBox x:Name="EnableDropShadowCheckBox"
+                                                         Content="启用阴影"
+                                                         IsChecked="True"
+                                                         Checked="OnEnableDropShadowChanged"
+                                                         Unchecked="OnEnableDropShadowChanged"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </controls:ShadcnCard>
+                
+                <!-- Sample Content -->
+                <controls:ShadcnCard Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="示例内容" 
+                                   FontSize="18" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Text="这是一个使用 ShadcnWindow 的示例窗口。您可以使用上面的控件来测试各种功能和属性。"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource MutedForegroundBrush}"
+                                   LineHeight="24"/>
+                        
+                        <Border Background="{DynamicResource MutedBrush}"
+                                CornerRadius="6"
+                                Padding="16"
+                                Margin="0,16,0,0">
+                            <TextBlock Text="ShadcnWindow 继承自 Window 类，提供了所有标准 WPF 窗口的功能，同时添加了现代化的视觉效果和更好的用户体验。"
+                                       TextWrapping="Wrap"
+                                       FontStyle="Italic"/>
+                        </Border>
+                    </StackPanel>
+                </controls:ShadcnCard>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</controls:ShadcnWindow>
